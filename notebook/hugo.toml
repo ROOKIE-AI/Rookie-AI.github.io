@@ -1,0 +1,4 @@
+baseURL = 'https://Rookie-AI.github.io/'
+languageCode = 'en-us'
+title = 'Rookie AI'
+theme = 'hugo-PaperMod'
