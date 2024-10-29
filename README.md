@@ -1,1 +1,5 @@
-# Rookie-AI.github.io
+# Rookie-AI 菜鸟人工智能学习笔记
+
+## 简介
+
+## 目录
