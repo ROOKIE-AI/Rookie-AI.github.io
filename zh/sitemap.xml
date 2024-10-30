@@ -2,46 +2,46 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://Rookie-AI.github.io:1313/zh/categories/</loc>
+    <loc>https://Rookie-AI.github.io/zh/categories/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://Rookie-AI.github.io:1313/categories/"
+                href="https://Rookie-AI.github.io/categories/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="zh"
-                href="https://Rookie-AI.github.io:1313/zh/categories/"
+                href="https://Rookie-AI.github.io/zh/categories/"
                 />
   </url><url>
-    <loc>https://Rookie-AI.github.io:1313/zh/</loc>
+    <loc>https://Rookie-AI.github.io/zh/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://Rookie-AI.github.io:1313/"
+                href="https://Rookie-AI.github.io/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="zh"
-                href="https://Rookie-AI.github.io:1313/zh/"
+                href="https://Rookie-AI.github.io/zh/"
                 />
   </url><url>
-    <loc>https://Rookie-AI.github.io:1313/zh/tags/</loc>
+    <loc>https://Rookie-AI.github.io/zh/tags/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://Rookie-AI.github.io:1313/tags/"
+                href="https://Rookie-AI.github.io/tags/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="zh"
-                href="https://Rookie-AI.github.io:1313/zh/tags/"
+                href="https://Rookie-AI.github.io/zh/tags/"
                 />
   </url>
 </urlset>
