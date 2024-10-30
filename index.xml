@@ -6,14 +6,71 @@
     <description>Recent content on Rookie AI</description>
     <generator>Hugo -- 0.136.5</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 30 Oct 2024 17:40:42 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 27 Oct 2024 13:30:00 +0800</lastBuildDate>
     <atom:link href="https://Rookie-AI.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>hello world</title>
-      <link>https://Rookie-AI.github.io/blog/02/</link>
-      <pubDate>Wed, 30 Oct 2024 17:40:42 +0800</pubDate>
-      <guid>https://Rookie-AI.github.io/blog/02/</guid>
-      <description>&lt;h1 id=&#34;hello-world&#34;&gt;Hello World&lt;/h1&gt;</description>
+      <title>时间序列分析: Prophet</title>
+      <link>https://Rookie-AI.github.io/blog/%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97%E5%88%86%E6%9E%90prophet/</link>
+      <pubDate>Sun, 27 Oct 2024 13:30:00 +0800</pubDate>
+      <guid>https://Rookie-AI.github.io/blog/%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97%E5%88%86%E6%9E%90prophet/</guid>
+      <description>&lt;h3 id=&#34;prophet-简介&#34;&gt;Prophet 简介&lt;/h3&gt;
+&lt;p&gt;Prophet 是由 Facebook（现为 Meta）开发的开源时间序列预测工具，旨在为具有趋势和季节性成分的时间序列数据提供高准确性、易解释的预测模型。它基于可加性模型，将时间序列分解为趋势、季节性、节假日效应和残差，为用户提供灵活且强大的预测能力。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;主要特点&#34;&gt;主要特点&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;易于使用&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;快速上手&lt;/strong&gt;：少量代码即可完成建模和预测。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;友好的 API&lt;/strong&gt;：简单直观的接口，适合数据科学家和业务分析师。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;处理复杂的时间序列&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;趋势分解&lt;/strong&gt;：自动检测并建模数据的增长或减少趋势。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;季节性调整&lt;/strong&gt;：支持每日、每周、每年的季节性因素。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;节假日效应&lt;/strong&gt;：纳入节假日和特殊事件的影响。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;鲁棒性强&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;应对异常值&lt;/strong&gt;：对缺失值和异常值有良好的容错性。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;缺失数据处理&lt;/strong&gt;：无需对缺失数据进行复杂的插值。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;可解释性&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;组件分解&lt;/strong&gt;：单独查看趋势、季节性和节假日效应的影响。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;透明的模型参数&lt;/strong&gt;：便于理解和调整模型。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;灵活性&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;自定义季节性&lt;/strong&gt;：允许添加自定义的季节性周期。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;支持先验知识&lt;/strong&gt;：可通过参数调整引入领域知识。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;基本原理&#34;&gt;基本原理&lt;/h3&gt;
+&lt;p&gt;Prophet 使用可加性模型，将时间序列表示为多个组件的和：&lt;/p&gt;
+&lt;p&gt;$$
+y(t) = g(t) + s(t) + h(t) + \varepsilon_t
+$$&lt;/p&gt;
+&lt;p&gt;其中：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;g(t) ：趋势函数，表示非周期性变化。&lt;/li&gt;
+&lt;li&gt;s(t) ：季节性函数，表示周期性变化（如年度、每周、每日）。&lt;/li&gt;
+&lt;li&gt;h(t) ：节假日效应，捕捉特定日期的影响。&lt;/li&gt;
+&lt;li&gt;ɛ_t  ： 误差项，表示未解释的部分。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;安装方法&#34;&gt;安装方法&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;Python 版本安装&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;pip install prophet
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
+&lt;p&gt;注意：早期版本的包名为 &lt;code&gt;fbprophet&lt;/code&gt;，从 v1.0 版本开始更名为 &lt;code&gt;prophet&lt;/code&gt;。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;R 版本安装&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-R&#34; data-lang=&#34;R&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;install.packages&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;prophet&amp;#39;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;hr&gt;
+&lt;h3 id=&#34;基本使用步骤&#34;&gt;基本使用步骤&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;导入库&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;from&lt;/span&gt; prophet &lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; Prophet
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; pandas &lt;span style=&#34;color:#66d9ef&#34;&gt;as&lt;/span&gt; pd
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;strong&gt;准备数据&lt;/strong&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title></title>
@@ -33,13 +90,6 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://Rookie-AI.github.io/works/kaggle/</guid>
       <description>&lt;h1 id=&#34;kaggle-科学计算竞赛&#34;&gt;kaggle 科学计算竞赛&lt;/h1&gt;</description>
-    </item>
-    <item>
-      <title>ML</title>
-      <link>https://Rookie-AI.github.io/blog/my-first-post/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://Rookie-AI.github.io/blog/my-first-post/</guid>
-      <description></description>
     </item>
   </channel>
 </rss>

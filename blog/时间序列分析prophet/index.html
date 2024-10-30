@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>时间序列分析: Prophet | Rookie AI</title>
+<meta name="keywords" content="">
+<meta name="description" content="Prophet 简介
+Prophet 是由 Facebook（现为 Meta）开发的开源时间序列预测工具，旨在为具有趋势和季节性成分的时间序列数据提供高准确性、易解释的预测模型。它基于可加性模型，将时间序列分解为趋势、季节性、节假日效应和残差，为用户提供灵活且强大的预测能力。
+
+主要特点
+易于使用
+
+快速上手：少量代码即可完成建模和预测。
+友好的 API：简单直观的接口，适合数据科学家和业务分析师。
+
+处理复杂的时间序列
+
+趋势分解：自动检测并建模数据的增长或减少趋势。
+季节性调整：支持每日、每周、每年的季节性因素。
+节假日效应：纳入节假日和特殊事件的影响。
+
+鲁棒性强
+
+应对异常值：对缺失值和异常值有良好的容错性。
+缺失数据处理：无需对缺失数据进行复杂的插值。
+
+可解释性
+
+组件分解：单独查看趋势、季节性和节假日效应的影响。
+透明的模型参数：便于理解和调整模型。
+
+灵活性
+
+自定义季节性：允许添加自定义的季节性周期。
+支持先验知识：可通过参数调整引入领域知识。
+
+
+基本原理
+Prophet 使用可加性模型，将时间序列表示为多个组件的和：
+$$
+y(t) = g(t) &#43; s(t) &#43; h(t) &#43; \varepsilon_t
+$$
+其中：
+
+g(t) ：趋势函数，表示非周期性变化。
+s(t) ：季节性函数，表示周期性变化（如年度、每周、每日）。
+h(t) ：节假日效应，捕捉特定日期的影响。
+ɛ_t  ： 误差项，表示未解释的部分。
+
+
+安装方法
+Python 版本安装
+pip install prophet
+
+注意：早期版本的包名为 fbprophet，从 v1.0 版本开始更名为 prophet。
+
+R 版本安装
+install.packages(&#39;prophet&#39;)
+
+基本使用步骤
+导入库
+from prophet import Prophet
+import pandas as pd
+准备数据">
+<meta name="author" content="Rookie AI">
+<link rel="canonical" href="https://Rookie-AI.github.io/blog/%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97%E5%88%86%E6%9E%90prophet/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.fc220c15db4aef0318bbf30adc45d33d4d7c88deff3238b23eb255afdc472ca6.css" integrity="sha256-/CIMFdtK7wMYu/MK3EXTPU18iN7/MjiyPrJVr9xHLKY=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://Rookie-AI.github.io/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://Rookie-AI.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://Rookie-AI.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://Rookie-AI.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://Rookie-AI.github.io/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://Rookie-AI.github.io/blog/%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97%E5%88%86%E6%9E%90prophet/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-XXXXXXXXXX');
+        }
+      </script><meta property="og:title" content="时间序列分析: Prophet" />
+<meta property="og:description" content="Prophet 简介
+Prophet 是由 Facebook（现为 Meta）开发的开源时间序列预测工具，旨在为具有趋势和季节性成分的时间序列数据提供高准确性、易解释的预测模型。它基于可加性模型，将时间序列分解为趋势、季节性、节假日效应和残差，为用户提供灵活且强大的预测能力。
+
+主要特点
+易于使用
+
+快速上手：少量代码即可完成建模和预测。
+友好的 API：简单直观的接口，适合数据科学家和业务分析师。
+
+处理复杂的时间序列
+
+趋势分解：自动检测并建模数据的增长或减少趋势。
+季节性调整：支持每日、每周、每年的季节性因素。
+节假日效应：纳入节假日和特殊事件的影响。
+
+鲁棒性强
+
+应对异常值：对缺失值和异常值有良好的容错性。
+缺失数据处理：无需对缺失数据进行复杂的插值。
+
+可解释性
+
+组件分解：单独查看趋势、季节性和节假日效应的影响。
+透明的模型参数：便于理解和调整模型。
+
+灵活性
+
+自定义季节性：允许添加自定义的季节性周期。
+支持先验知识：可通过参数调整引入领域知识。
+
+
+基本原理
+Prophet 使用可加性模型，将时间序列表示为多个组件的和：
+$$
+y(t) = g(t) &#43; s(t) &#43; h(t) &#43; \varepsilon_t
+$$
+其中：
+
+g(t) ：趋势函数，表示非周期性变化。
+s(t) ：季节性函数，表示周期性变化（如年度、每周、每日）。
+h(t) ：节假日效应，捕捉特定日期的影响。
+ɛ_t  ： 误差项，表示未解释的部分。
+
+
+安装方法
+Python 版本安装
+pip install prophet
+
+注意：早期版本的包名为 fbprophet，从 v1.0 版本开始更名为 prophet。
+
+R 版本安装
+install.packages(&#39;prophet&#39;)
+
+基本使用步骤
+导入库
+from prophet import Prophet
+import pandas as pd
+准备数据" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://Rookie-AI.github.io/blog/%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97%E5%88%86%E6%9E%90prophet/" /><meta property="article:section" content="blog" />
+<meta property="article:published_time" content="2024-10-27T13:30:00+08:00" />
+<meta property="article:modified_time" content="2024-10-27T13:30:00+08:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="时间序列分析: Prophet"/>
+<meta name="twitter:description" content="Prophet 简介
+Prophet 是由 Facebook（现为 Meta）开发的开源时间序列预测工具，旨在为具有趋势和季节性成分的时间序列数据提供高准确性、易解释的预测模型。它基于可加性模型，将时间序列分解为趋势、季节性、节假日效应和残差，为用户提供灵活且强大的预测能力。
+
+主要特点
+易于使用
+
+快速上手：少量代码即可完成建模和预测。
+友好的 API：简单直观的接口，适合数据科学家和业务分析师。
+
+处理复杂的时间序列
+
+趋势分解：自动检测并建模数据的增长或减少趋势。
+季节性调整：支持每日、每周、每年的季节性因素。
+节假日效应：纳入节假日和特殊事件的影响。
+
+鲁棒性强
+
+应对异常值：对缺失值和异常值有良好的容错性。
+缺失数据处理：无需对缺失数据进行复杂的插值。
+
+可解释性
+
+组件分解：单独查看趋势、季节性和节假日效应的影响。
+透明的模型参数：便于理解和调整模型。
+
+灵活性
+
+自定义季节性：允许添加自定义的季节性周期。
+支持先验知识：可通过参数调整引入领域知识。
+
+
+基本原理
+Prophet 使用可加性模型，将时间序列表示为多个组件的和：
+$$
+y(t) = g(t) &#43; s(t) &#43; h(t) &#43; \varepsilon_t
+$$
+其中：
+
+g(t) ：趋势函数，表示非周期性变化。
+s(t) ：季节性函数，表示周期性变化（如年度、每周、每日）。
+h(t) ：节假日效应，捕捉特定日期的影响。
+ɛ_t  ： 误差项，表示未解释的部分。
+
+
+安装方法
+Python 版本安装
+pip install prophet
+
+注意：早期版本的包名为 fbprophet，从 v1.0 版本开始更名为 prophet。
+
+R 版本安装
+install.packages(&#39;prophet&#39;)
+
+基本使用步骤
+导入库
+from prophet import Prophet
+import pandas as pd
+准备数据"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Blogs",
+      "item": "https://Rookie-AI.github.io/blog/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "时间序列分析: Prophet",
+      "item": "https://Rookie-AI.github.io/blog/%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97%E5%88%86%E6%9E%90prophet/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "时间序列分析: Prophet",
+  "name": "时间序列分析: Prophet",
+  "description": "Prophet 简介 Prophet 是由 Facebook（现为 Meta）开发的开源时间序列预测工具，旨在为具有趋势和季节性成分的时间序列数据提供高准确性、易解释的预测模型。它基于可加性模型，将时间序列分解为趋势、季节性、节假日效应和残差，为用户提供灵活且强大的预测能力。\n主要特点 易于使用\n快速上手：少量代码即可完成建模和预测。 友好的 API：简单直观的接口，适合数据科学家和业务分析师。 处理复杂的时间序列\n趋势分解：自动检测并建模数据的增长或减少趋势。 季节性调整：支持每日、每周、每年的季节性因素。 节假日效应：纳入节假日和特殊事件的影响。 鲁棒性强\n应对异常值：对缺失值和异常值有良好的容错性。 缺失数据处理：无需对缺失数据进行复杂的插值。 可解释性\n组件分解：单独查看趋势、季节性和节假日效应的影响。 透明的模型参数：便于理解和调整模型。 灵活性\n自定义季节性：允许添加自定义的季节性周期。 支持先验知识：可通过参数调整引入领域知识。 基本原理 Prophet 使用可加性模型，将时间序列表示为多个组件的和：\n$$ y(t) = g(t) + s(t) + h(t) + \\varepsilon_t $$\n其中：\ng(t) ：趋势函数，表示非周期性变化。 s(t) ：季节性函数，表示周期性变化（如年度、每周、每日）。 h(t) ：节假日效应，捕捉特定日期的影响。 ɛ_t ： 误差项，表示未解释的部分。 安装方法 Python 版本安装\npip install prophet 注意：早期版本的包名为 fbprophet，从 v1.0 版本开始更名为 prophet。\nR 版本安装\ninstall.packages(\u0026#39;prophet\u0026#39;) 基本使用步骤 导入库\nfrom prophet import Prophet import pandas as pd 准备数据\n",
+  "keywords": [
+    
+  ],
+  "articleBody": "Prophet 简介 Prophet 是由 Facebook（现为 Meta）开发的开源时间序列预测工具，旨在为具有趋势和季节性成分的时间序列数据提供高准确性、易解释的预测模型。它基于可加性模型，将时间序列分解为趋势、季节性、节假日效应和残差，为用户提供灵活且强大的预测能力。\n主要特点 易于使用\n快速上手：少量代码即可完成建模和预测。 友好的 API：简单直观的接口，适合数据科学家和业务分析师。 处理复杂的时间序列\n趋势分解：自动检测并建模数据的增长或减少趋势。 季节性调整：支持每日、每周、每年的季节性因素。 节假日效应：纳入节假日和特殊事件的影响。 鲁棒性强\n应对异常值：对缺失值和异常值有良好的容错性。 缺失数据处理：无需对缺失数据进行复杂的插值。 可解释性\n组件分解：单独查看趋势、季节性和节假日效应的影响。 透明的模型参数：便于理解和调整模型。 灵活性\n自定义季节性：允许添加自定义的季节性周期。 支持先验知识：可通过参数调整引入领域知识。 基本原理 Prophet 使用可加性模型，将时间序列表示为多个组件的和：\n$$ y(t) = g(t) + s(t) + h(t) + \\varepsilon_t $$\n其中：\ng(t) ：趋势函数，表示非周期性变化。 s(t) ：季节性函数，表示周期性变化（如年度、每周、每日）。 h(t) ：节假日效应，捕捉特定日期的影响。 ɛ_t ： 误差项，表示未解释的部分。 安装方法 Python 版本安装\npip install prophet 注意：早期版本的包名为 fbprophet，从 v1.0 版本开始更名为 prophet。\nR 版本安装\ninstall.packages('prophet') 基本使用步骤 导入库\nfrom prophet import Prophet import pandas as pd 准备数据\n数据需要是一个包含两列的 DataFrame：\nds：日期列，格式为 %Y-%m-%d 或日期时间格式。 y：数值列，表示对应日期的观察值。 df = pd.read_csv('your_time_series.csv') df['ds'] = pd.to_datetime(df['date_column']) df['y'] = df['value_column'] 创建并拟合模型\nmodel = Prophet() model.fit(df) 进行预测\n创建未来日期的 DataFrame\nfuture = model.make_future_dataframe(periods=365) # periods 参数指定预测的天数 预测未来\nforecast = model.predict(future) 可视化结果\n绘制预测图\nmodel.plot(forecast) 绘制组件图\nmodel.plot_components(forecast) 高级功能 添加自定义季节性\n如果数据中存在特定的季节性，可以自定义添加，例如每周季节性：\nmodel = Prophet(weekly_seasonality=False) model.add_seasonality(name='weekly', period=7, fourier_order=3) 纳入节假日效应\nfrom prophet.translate import hdays holidays = hdays('CN') # 获取中国的法定节假日 model = Prophet(holidays=holidays) 调整模型参数\n变化点灵活性：控制趋势变化点的灵活性\nmodel = Prophet(changepoint_prior_scale=0.05) 季节性模式：使用乘法季节性\nmodel = Prophet(seasonality_mode='multiplicative') 处理异常值\n对异常点进行标记并设置权重：\ndf['cap'] = 某个上限值 df['floor'] = 某个下限值 model = Prophet(growth='logistic') 模型评估与优化 交叉验证\n使用交叉验证评估模型性能：\nfrom prophet.diagnostics import cross_validation df_cv = cross_validation(model, initial='730 days', period='180 days', horizon='365 days') 性能指标\n计算预测性能指标：\nfrom prophet.diagnostics import performance_metrics df_p = performance_metrics(df_cv) 优势与局限性 优势\n简洁易用：适合没有时间序列背景的用户。 高度自动化：默认参数通常能给出不错的结果。 可扩展性：便于添加自定义组件。 局限性\n对突发性变化敏感：可能无法很好地预测突然的趋势变化。 有限的模型类型：主要基于可加性模型，可能不适用于非加性的复杂模式。 应用场景 业务指标预测：如销售额、用户增长量等。 资源规划：服务器负载、流量监控等。 金融时间序列：股票价格、交易量预测等。 总结 Prophet 是一款强大且易于使用的时间序列预测工具，特别适合处理具有明显趋势和季节性的业务数据。通过灵活的模型配置和友好的接口，用户可以快速构建并部署预测模型，提高业务决策的科学性和准确性。\n",
+  "wordCount" : "193",
+  "inLanguage": "en",
+  "datePublished": "2024-10-27T13:30:00+08:00",
+  "dateModified": "2024-10-27T13:30:00+08:00",
+  "author":{
+    "@type": "Person",
+    "name": "Rookie AI"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://Rookie-AI.github.io/blog/%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97%E5%88%86%E6%9E%90prophet/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rookie AI",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://Rookie-AI.github.io/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://Rookie-AI.github.io/" accesskey="h" title="Rookie AI (Alt + H)">Rookie AI</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+                <ul class="lang-switch"><li>|</li>
+                    <li>
+                        <a href="https://Rookie-AI.github.io/zh/" title="中文"
+                            aria-label="中文">Zh</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://Rookie-AI.github.io/" title="首页">
+                    <span>首页</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://Rookie-AI.github.io/blog/" title="博客">
+                    <span>博客</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://Rookie-AI.github.io/works/" title="作品">
+                    <span>作品</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://Rookie-AI.github.io/about/" title="关于">
+                    <span>关于</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://Rookie-AI.github.io/">Home</a>&nbsp;»&nbsp;<a href="https://Rookie-AI.github.io/blog/">Blogs</a></div>
+    <h1 class="post-title entry-hint-parent">
+      时间序列分析: Prophet
+    </h1>
+    <div class="post-meta"><span title='2024-10-27 13:30:00 +0800 CST'>October 27, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Rookie AI&nbsp;|&nbsp;<a href="https://github.com/ROOKIE-AI/Rookie-AI.github.io/Blog/%e6%97%b6%e9%97%b4%e5%ba%8f%e5%88%97%e5%88%86%e6%9e%90Prophet.md" rel="noopener noreferrer" target="_blank">Rookie.AI</a>
+
+</div>
+  </header> <div class="toc">
+    <details >
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">Table of Contents</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#prophet-%e7%ae%80%e4%bb%8b" aria-label="Prophet 简介">Prophet 简介</a></li>
+                <li>
+                    <a href="#%e4%b8%bb%e8%a6%81%e7%89%b9%e7%82%b9" aria-label="主要特点">主要特点</a></li>
+                <li>
+                    <a href="#%e5%9f%ba%e6%9c%ac%e5%8e%9f%e7%90%86" aria-label="基本原理">基本原理</a></li>
+                <li>
+                    <a href="#%e5%ae%89%e8%a3%85%e6%96%b9%e6%b3%95" aria-label="安装方法">安装方法</a></li>
+                <li>
+                    <a href="#%e5%9f%ba%e6%9c%ac%e4%bd%bf%e7%94%a8%e6%ad%a5%e9%aa%a4" aria-label="基本使用步骤">基本使用步骤</a></li>
+                <li>
+                    <a href="#%e9%ab%98%e7%ba%a7%e5%8a%9f%e8%83%bd" aria-label="高级功能">高级功能</a></li>
+                <li>
+                    <a href="#%e6%a8%a1%e5%9e%8b%e8%af%84%e4%bc%b0%e4%b8%8e%e4%bc%98%e5%8c%96" aria-label="模型评估与优化">模型评估与优化</a></li>
+                <li>
+                    <a href="#%e4%bc%98%e5%8a%bf%e4%b8%8e%e5%b1%80%e9%99%90%e6%80%a7" aria-label="优势与局限性">优势与局限性</a></li>
+                <li>
+                    <a href="#%e5%ba%94%e7%94%a8%e5%9c%ba%e6%99%af" aria-label="应用场景">应用场景</a></li>
+                <li>
+                    <a href="#%e6%80%bb%e7%bb%93" aria-label="总结">总结</a>
+                </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><h3 id="prophet-简介">Prophet 简介<a hidden class="anchor" aria-hidden="true" href="#prophet-简介">#</a></h3>
+<p>Prophet 是由 Facebook（现为 Meta）开发的开源时间序列预测工具，旨在为具有趋势和季节性成分的时间序列数据提供高准确性、易解释的预测模型。它基于可加性模型，将时间序列分解为趋势、季节性、节假日效应和残差，为用户提供灵活且强大的预测能力。</p>
+<hr>
+<h3 id="主要特点">主要特点<a hidden class="anchor" aria-hidden="true" href="#主要特点">#</a></h3>
+<p><strong>易于使用</strong></p>
+<ul>
+<li><strong>快速上手</strong>：少量代码即可完成建模和预测。</li>
+<li><strong>友好的 API</strong>：简单直观的接口，适合数据科学家和业务分析师。</li>
+</ul>
+<p><strong>处理复杂的时间序列</strong></p>
+<ul>
+<li><strong>趋势分解</strong>：自动检测并建模数据的增长或减少趋势。</li>
+<li><strong>季节性调整</strong>：支持每日、每周、每年的季节性因素。</li>
+<li><strong>节假日效应</strong>：纳入节假日和特殊事件的影响。</li>
+</ul>
+<p><strong>鲁棒性强</strong></p>
+<ul>
+<li><strong>应对异常值</strong>：对缺失值和异常值有良好的容错性。</li>
+<li><strong>缺失数据处理</strong>：无需对缺失数据进行复杂的插值。</li>
+</ul>
+<p><strong>可解释性</strong></p>
+<ul>
+<li><strong>组件分解</strong>：单独查看趋势、季节性和节假日效应的影响。</li>
+<li><strong>透明的模型参数</strong>：便于理解和调整模型。</li>
+</ul>
+<p><strong>灵活性</strong></p>
+<ul>
+<li><strong>自定义季节性</strong>：允许添加自定义的季节性周期。</li>
+<li><strong>支持先验知识</strong>：可通过参数调整引入领域知识。</li>
+</ul>
+<hr>
+<h3 id="基本原理">基本原理<a hidden class="anchor" aria-hidden="true" href="#基本原理">#</a></h3>
+<p>Prophet 使用可加性模型，将时间序列表示为多个组件的和：</p>
+<p>$$
+y(t) = g(t) + s(t) + h(t) + \varepsilon_t
+$$</p>
+<p>其中：</p>
+<ul>
+<li>g(t) ：趋势函数，表示非周期性变化。</li>
+<li>s(t) ：季节性函数，表示周期性变化（如年度、每周、每日）。</li>
+<li>h(t) ：节假日效应，捕捉特定日期的影响。</li>
+<li>ɛ_t  ： 误差项，表示未解释的部分。</li>
+</ul>
+<hr>
+<h3 id="安装方法">安装方法<a hidden class="anchor" aria-hidden="true" href="#安装方法">#</a></h3>
+<p><strong>Python 版本安装</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>pip install prophet
+</span></span></code></pre></div><blockquote>
+<p>注意：早期版本的包名为 <code>fbprophet</code>，从 v1.0 版本开始更名为 <code>prophet</code>。</p>
+</blockquote>
+<p><strong>R 版本安装</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-R" data-lang="R"><span style="display:flex;"><span><span style="color:#a6e22e">install.packages</span>(<span style="color:#e6db74">&#39;prophet&#39;</span>)
+</span></span></code></pre></div><hr>
+<h3 id="基本使用步骤">基本使用步骤<a hidden class="anchor" aria-hidden="true" href="#基本使用步骤">#</a></h3>
+<p><strong>导入库</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> prophet <span style="color:#f92672">import</span> Prophet
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> pandas <span style="color:#66d9ef">as</span> pd
+</span></span></code></pre></div><p><strong>准备数据</strong></p>
+<p>数据需要是一个包含两列的 DataFrame：</p>
+<ul>
+<li><code>ds</code>：日期列，格式为 <code>%Y-%m-%d</code> 或日期时间格式。</li>
+<li><code>y</code>：数值列，表示对应日期的观察值。</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>df <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>read_csv(<span style="color:#e6db74">&#39;your_time_series.csv&#39;</span>)
+</span></span><span style="display:flex;"><span>df[<span style="color:#e6db74">&#39;ds&#39;</span>] <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>to_datetime(df[<span style="color:#e6db74">&#39;date_column&#39;</span>])
+</span></span><span style="display:flex;"><span>df[<span style="color:#e6db74">&#39;y&#39;</span>] <span style="color:#f92672">=</span> df[<span style="color:#e6db74">&#39;value_column&#39;</span>]
+</span></span></code></pre></div><p><strong>创建并拟合模型</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>model <span style="color:#f92672">=</span> Prophet()
+</span></span><span style="display:flex;"><span>model<span style="color:#f92672">.</span>fit(df)
+</span></span></code></pre></div><p><strong>进行预测</strong></p>
+<ol>
+<li>
+<p>创建未来日期的 DataFrame</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>future <span style="color:#f92672">=</span> model<span style="color:#f92672">.</span>make_future_dataframe(periods<span style="color:#f92672">=</span><span style="color:#ae81ff">365</span>)  <span style="color:#75715e"># periods 参数指定预测的天数</span>
+</span></span></code></pre></div></li>
+<li>
+<p>预测未来</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>forecast <span style="color:#f92672">=</span> model<span style="color:#f92672">.</span>predict(future)
+</span></span></code></pre></div></li>
+</ol>
+<p><strong>可视化结果</strong></p>
+<ol>
+<li>
+<p>绘制预测图</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>model<span style="color:#f92672">.</span>plot(forecast)
+</span></span></code></pre></div></li>
+<li>
+<p>绘制组件图</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>model<span style="color:#f92672">.</span>plot_components(forecast)
+</span></span></code></pre></div></li>
+</ol>
+<hr>
+<h3 id="高级功能">高级功能<a hidden class="anchor" aria-hidden="true" href="#高级功能">#</a></h3>
+<ol>
+<li>
+<p><strong>添加自定义季节性</strong></p>
+<p>如果数据中存在特定的季节性，可以自定义添加，例如每周季节性：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>model <span style="color:#f92672">=</span> Prophet(weekly_seasonality<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>)
+</span></span><span style="display:flex;"><span>model<span style="color:#f92672">.</span>add_seasonality(name<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;weekly&#39;</span>, period<span style="color:#f92672">=</span><span style="color:#ae81ff">7</span>, fourier_order<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>)
+</span></span></code></pre></div></li>
+<li>
+<p><strong>纳入节假日效应</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> prophet.translate <span style="color:#f92672">import</span> hdays
+</span></span><span style="display:flex;"><span>holidays <span style="color:#f92672">=</span> hdays(<span style="color:#e6db74">&#39;CN&#39;</span>)  <span style="color:#75715e"># 获取中国的法定节假日</span>
+</span></span><span style="display:flex;"><span>model <span style="color:#f92672">=</span> Prophet(holidays<span style="color:#f92672">=</span>holidays)
+</span></span></code></pre></div></li>
+<li>
+<p><strong>调整模型参数</strong></p>
+<ul>
+<li>
+<p><strong>变化点灵活性</strong>：控制趋势变化点的灵活性</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>model <span style="color:#f92672">=</span> Prophet(changepoint_prior_scale<span style="color:#f92672">=</span><span style="color:#ae81ff">0.05</span>)
+</span></span></code></pre></div></li>
+<li>
+<p><strong>季节性模式</strong>：使用乘法季节性</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>model <span style="color:#f92672">=</span> Prophet(seasonality_mode<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;multiplicative&#39;</span>)
+</span></span></code></pre></div></li>
+</ul>
+</li>
+<li>
+<p><strong>处理异常值</strong></p>
+<p>对异常点进行标记并设置权重：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>df[<span style="color:#e6db74">&#39;cap&#39;</span>] <span style="color:#f92672">=</span> 某个上限值
+</span></span><span style="display:flex;"><span>df[<span style="color:#e6db74">&#39;floor&#39;</span>] <span style="color:#f92672">=</span> 某个下限值
+</span></span><span style="display:flex;"><span>model <span style="color:#f92672">=</span> Prophet(growth<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;logistic&#39;</span>)
+</span></span></code></pre></div></li>
+</ol>
+<hr>
+<h3 id="模型评估与优化">模型评估与优化<a hidden class="anchor" aria-hidden="true" href="#模型评估与优化">#</a></h3>
+<p><strong>交叉验证</strong></p>
+<p>使用交叉验证评估模型性能：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> prophet.diagnostics <span style="color:#f92672">import</span> cross_validation
+</span></span><span style="display:flex;"><span>df_cv <span style="color:#f92672">=</span> cross_validation(model, initial<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;730 days&#39;</span>, period<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;180 days&#39;</span>, horizon<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;365 days&#39;</span>)
+</span></span></code></pre></div><p><strong>性能指标</strong></p>
+<p>计算预测性能指标：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> prophet.diagnostics <span style="color:#f92672">import</span> performance_metrics
+</span></span><span style="display:flex;"><span>df_p <span style="color:#f92672">=</span> performance_metrics(df_cv)
+</span></span></code></pre></div><hr>
+<h3 id="优势与局限性">优势与局限性<a hidden class="anchor" aria-hidden="true" href="#优势与局限性">#</a></h3>
+<p><strong>优势</strong></p>
+<ul>
+<li><strong>简洁易用</strong>：适合没有时间序列背景的用户。</li>
+<li><strong>高度自动化</strong>：默认参数通常能给出不错的结果。</li>
+<li><strong>可扩展性</strong>：便于添加自定义组件。</li>
+</ul>
+<p><strong>局限性</strong></p>
+<ul>
+<li><strong>对突发性变化敏感</strong>：可能无法很好地预测突然的趋势变化。</li>
+<li><strong>有限的模型类型</strong>：主要基于可加性模型，可能不适用于非加性的复杂模式。</li>
+</ul>
+<hr>
+<h3 id="应用场景">应用场景<a hidden class="anchor" aria-hidden="true" href="#应用场景">#</a></h3>
+<ul>
+<li><strong>业务指标预测</strong>：如销售额、用户增长量等。</li>
+<li><strong>资源规划</strong>：服务器负载、流量监控等。</li>
+<li><strong>金融时间序列</strong>：股票价格、交易量预测等。</li>
+</ul>
+<hr>
+<h3 id="总结">总结<a hidden class="anchor" aria-hidden="true" href="#总结">#</a></h3>
+<p>Prophet 是一款强大且易于使用的时间序列预测工具，特别适合处理具有明显趋势和季节性的业务数据。通过灵活的模型配置和友好的接口，用户可以快速构建并部署预测模型，提高业务决策的科学性和准确性。</p>
+
+
+  </div>
+
+    
+  <div id="giscus" style="margin-top: 20px;"></div>  
+  <script src="https://giscus.app/client.js"  
+          data-repo="ROOKIE-AI/Rookie-AI.github.io"  
+          data-repo-id="R_kgDONHrtnA"  
+          data-category="Announcements"  
+          data-category-id="DIC_kwDONHrtnM4Cj0Yy"  
+          data-mapping="pathname"  
+          data-strict="0"  
+          data-reactions-enabled="1"  
+          data-emit-metadata="0"  
+          data-theme="preferred_color_scheme"  
+          data-lang="zh-CN"  
+          crossorigin="anonymous"  
+          async>  
+  </script>  
+
+
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2024 <a href="https://Rookie-AI.github.io/">Rookie AI</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>
