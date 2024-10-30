@@ -2,46 +2,46 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://Rookie-AI.github.io/zh/categories/</loc>
+    <loc>http://localhost:1313/zh/categories/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://Rookie-AI.github.io/categories/"
+                href="http://localhost:1313/categories/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="zh"
-                href="https://Rookie-AI.github.io/zh/categories/"
+                href="http://localhost:1313/zh/categories/"
                 />
   </url><url>
-    <loc>https://Rookie-AI.github.io/zh/</loc>
+    <loc>http://localhost:1313/zh/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://Rookie-AI.github.io/"
+                href="http://localhost:1313/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="zh"
-                href="https://Rookie-AI.github.io/zh/"
+                href="http://localhost:1313/zh/"
                 />
   </url><url>
-    <loc>https://Rookie-AI.github.io/zh/tags/</loc>
+    <loc>http://localhost:1313/zh/tags/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://Rookie-AI.github.io/tags/"
+                href="http://localhost:1313/tags/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="zh"
-                href="https://Rookie-AI.github.io/zh/tags/"
+                href="http://localhost:1313/zh/tags/"
                 />
   </url>
 </urlset>
