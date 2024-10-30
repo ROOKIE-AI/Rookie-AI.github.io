@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Works on Rookie AI</title>
+    <link>https://Rookie-AI.github.io/works/</link>
+    <description>Recent content in Works on Rookie AI</description>
+    <generator>Hugo -- 0.136.5</generator>
+    <language>en</language>
+    <atom:link href="https://Rookie-AI.github.io/works/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Kaggle 竞赛</title>
+      <link>https://Rookie-AI.github.io/works/kaggle/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://Rookie-AI.github.io/works/kaggle/</guid>
+      <description>&lt;h1 id=&#34;kaggle-科学计算竞赛&#34;&gt;kaggle 科学计算竞赛&lt;/h1&gt;</description>
+    </item>
+  </channel>
+</rss>

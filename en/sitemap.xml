@@ -2,7 +2,32 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://Rookie-AI.github.io/posts/my-first-post/</loc>
+    <loc>https://Rookie-AI.github.io/blog/</loc>
+    <lastmod>2024-10-30T17:40:42+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://Rookie-AI.github.io/</loc>
+    <lastmod>2024-10-30T17:40:42+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://Rookie-AI.github.io/zh/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://Rookie-AI.github.io/"
+                />
+  </url><url>
+    <loc>https://Rookie-AI.github.io/blog/02/</loc>
+    <lastmod>2024-10-30T17:40:42+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://Rookie-AI.github.io/blog/my-first-post/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
@@ -24,23 +49,9 @@
                 href="https://Rookie-AI.github.io/categories/"
                 />
   </url><url>
-    <loc>https://Rookie-AI.github.io/posts/</loc>
+    <loc>https://Rookie-AI.github.io/works/kaggle/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-  </url><url>
-    <loc>https://Rookie-AI.github.io/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="https://Rookie-AI.github.io/zh/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://Rookie-AI.github.io/"
-                />
   </url><url>
     <loc>https://Rookie-AI.github.io/tags/</loc>
     <changefreq>monthly</changefreq>
@@ -55,5 +66,9 @@
                 hreflang="en"
                 href="https://Rookie-AI.github.io/tags/"
                 />
+  </url><url>
+    <loc>https://Rookie-AI.github.io/works/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
 </urlset>
