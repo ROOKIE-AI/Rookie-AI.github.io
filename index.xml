@@ -89,7 +89,7 @@ $$&lt;/p&gt;
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://Rookie-AI.github.io/notebook/</guid>
       <description>&lt;h2 id=&#34;-机器学习ml&#34;&gt;🌟 &lt;a href=&#34;https://Rookie-AI.github.io/ML/&#34;&gt;机器学习&lt;/a&gt;&lt;/h2&gt;
-&lt;h2 id=&#34;-深度学习dl&#34;&gt;🌟 &lt;a href=&#34;https://Rookie-AI.github.io/DL/&#34;&gt;深度学习&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&#34;-深度学习dl&#34;&gt;🌟 &lt;a href=&#34;https://Rookie-AI.github.io/dl/&#34;&gt;深度学习&lt;/a&gt;&lt;/h2&gt;
 &lt;h2 id=&#34;-时间序列分析time-series&#34;&gt;🌟 &lt;a href=&#34;https://Rookie-AI.github.io/time-series/&#34;&gt;时间序列分析&lt;/a&gt;&lt;/h2&gt;</description>
     </item>
     <item>
@@ -98,6 +98,22 @@ $$&lt;/p&gt;
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://Rookie-AI.github.io/works/kaggle/</guid>
       <description>&lt;h1 id=&#34;kaggle-科学计算竞赛&#34;&gt;kaggle 科学计算竞赛&lt;/h1&gt;</description>
+    </item>
+    <item>
+      <title>深度学习相关资源</title>
+      <link>https://Rookie-AI.github.io/dl/%E7%9B%B8%E5%85%B3%E8%B5%84%E6%BA%90/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://Rookie-AI.github.io/dl/%E7%9B%B8%E5%85%B3%E8%B5%84%E6%BA%90/</guid>
+      <description>&lt;h2 id=&#34;笔记资源&#34;&gt;笔记资源&lt;/h2&gt;
+&lt;h3 id=&#34;在线资源&#34;&gt;在线资源&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://zh-v2.d2l.ai/&#34;&gt;动手学习深度学习-李沐&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://developers.google.com/machine-learning?hl=zh-cn&#34;&gt;谷歌机器学习教育&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://code.themlsbook.com/index.html&#34;&gt;&lt;strong&gt;Machine Learning Simplified&lt;/strong&gt;书籍的&lt;strong&gt;补充&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://wiki.pathmind.com/attention-mechanism-memory-network&#34;&gt;注意力机制和记忆网络初学者指南&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://distill.pub/2019/memorization-in-rnns/&#34;&gt;RNN中的记忆可视化&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://luweiagi.github.io/machine-learning-notes/#/&#34;&gt;芦苇的机器学习笔记&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</description>
     </item>
   </channel>
 </rss>
