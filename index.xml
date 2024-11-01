@@ -85,6 +85,13 @@ $$&lt;/p&gt;
     </item>
     <item>
       <title></title>
+      <link>https://Rookie-AI.github.io/dl/%E7%9B%B8%E5%85%B3%E8%B5%84%E6%BA%90/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://Rookie-AI.github.io/dl/%E7%9B%B8%E5%85%B3%E8%B5%84%E6%BA%90/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title></title>
       <link>https://Rookie-AI.github.io/notebook/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://Rookie-AI.github.io/notebook/</guid>
@@ -100,10 +107,10 @@ $$&lt;/p&gt;
       <description>&lt;h1 id=&#34;kaggle-科学计算竞赛&#34;&gt;kaggle 科学计算竞赛&lt;/h1&gt;</description>
     </item>
     <item>
-      <title>深度学习相关资源</title>
-      <link>https://Rookie-AI.github.io/dl/%E7%9B%B8%E5%85%B3%E8%B5%84%E6%BA%90/</link>
+      <title>深度学习</title>
+      <link>https://Rookie-AI.github.io/dl/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://Rookie-AI.github.io/dl/%E7%9B%B8%E5%85%B3%E8%B5%84%E6%BA%90/</guid>
+      <guid>https://Rookie-AI.github.io/dl/</guid>
       <description>&lt;h3 id=&#34;在线资源&#34;&gt;在线资源&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;https://zh-v2.d2l.ai/&#34;&gt;动手学习深度学习-李沐&lt;/a&gt;&lt;/li&gt;
@@ -112,7 +119,8 @@ $$&lt;/p&gt;
 &lt;li&gt;&lt;a href=&#34;https://wiki.pathmind.com/attention-mechanism-memory-network&#34;&gt;注意力机制和记忆网络初学者指南&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://distill.pub/2019/memorization-in-rnns/&#34;&gt;RNN中的记忆可视化&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://luweiagi.github.io/machine-learning-notes/#/&#34;&gt;芦苇的机器学习笔记&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</description>
+&lt;/ul&gt;
+&lt;h3 id=&#34;动手学深度学习-李沐-个人笔记httpsnbviewerorggithubrookie-aidltreemaind2lme&#34;&gt;&lt;a href=&#34;https://nbviewer.org/github/ROOKIE-AI/DL/tree/main/d2l/me&#34;&gt;动手学深度学习-李沐 个人笔记&lt;/a&gt;&lt;/h3&gt;</description>
     </item>
   </channel>
 </rss>

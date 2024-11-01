@@ -31,6 +31,10 @@
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
+    <loc>https://Rookie-AI.github.io/dl/%E7%9B%B8%E5%85%B3%E8%B5%84%E6%BA%90/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
     <loc>https://Rookie-AI.github.io/notebook/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -48,10 +52,6 @@
                 hreflang="en"
                 href="https://Rookie-AI.github.io/categories/"
                 />
-  </url><url>
-    <loc>https://Rookie-AI.github.io/dl/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
   </url><url>
     <loc>https://Rookie-AI.github.io/works/kaggle/</loc>
     <changefreq>monthly</changefreq>
@@ -75,7 +75,7 @@
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://Rookie-AI.github.io/dl/%E7%9B%B8%E5%85%B3%E8%B5%84%E6%BA%90/</loc>
+    <loc>https://Rookie-AI.github.io/dl/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
