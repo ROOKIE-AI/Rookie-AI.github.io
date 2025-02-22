@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Rookie AI</title>
+<meta name="keywords" content="">
+<meta name="description" content="从零实现线性神经网络二分类器
+import numpy as np  
+from collections import defaultdict
+import matplotlib.pyplot as plt
+  本文主要旨在从零对算法进行实现，因此对算法原理的阐述将保持简洁。接下来，我们将概述感知机和逻辑斯蒂回归（Logistic Regression）的基本原理，并提供从零实现这两种算法的示例。此外，我们还将通过启发式方法探讨它们在实际应用中的局限性。
+感知机
+算法原理
+感知机（Perceptron）是一种基础的线性分类模型，最早由弗兰克·罗森布拉特 (Frank Rosenblatt) 在1958年提出。其主要原理如下：
+1. 模型结构
+感知机由输入节点、权重、偏置和激活函数组成：
+
+输入节点：接收输入特征的值。
+权重：每个输入特征都有一个对应的权重，用于衡量特征的重要性。
+偏置：一个常数项，使模型能够更灵活地拟合数据。
+激活函数：通常是阶跃函数，将加权和转换为输出（0或1）。
+
+2. 工作流程
+
+
+加权求和：计算输入特征与对应权重的加权和：
+$$
+z = \sum_{i=1}^{n} w_i x_i &#43; b
+$$
+其中，$ w_i $ 是权重，$ x_i $ 是输入特征，$ b $ 是偏置。
+
+
+应用激活函数：将加权和 (z) 输入到激活函数中，决定输出类别：
+$$
+y = f(z)
+$$
+典型的激活函数为阶跃函数：
+$$
+f(z) =
+\begin{cases}
+1 &amp; \text{if } z \geq 0 \
+0 &amp; \text{if } z &lt; 0
+\end{cases}
+$$">
+<meta name="author" content="Rookie AI">
+<link rel="canonical" href="https://Rookie-AI.github.io/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/01.%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0%E7%BA%BF%E6%80%A7%E7%A5%9E%E7%BB%8F%E5%85%83%E4%BA%8C%E5%88%86%E7%B1%BB%E5%99%A8/01.%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0%E7%BA%BF%E6%80%A7%E7%A5%9E%E7%BB%8F%E5%85%83%E4%BA%8C%E5%88%86%E7%B1%BB%E5%99%A8/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.fc220c15db4aef0318bbf30adc45d33d4d7c88deff3238b23eb255afdc472ca6.css" integrity="sha256-/CIMFdtK7wMYu/MK3EXTPU18iN7/MjiyPrJVr9xHLKY=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://Rookie-AI.github.io/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://Rookie-AI.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://Rookie-AI.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://Rookie-AI.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://Rookie-AI.github.io/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://Rookie-AI.github.io/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/01.%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0%E7%BA%BF%E6%80%A7%E7%A5%9E%E7%BB%8F%E5%85%83%E4%BA%8C%E5%88%86%E7%B1%BB%E5%99%A8/01.%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0%E7%BA%BF%E6%80%A7%E7%A5%9E%E7%BB%8F%E5%85%83%E4%BA%8C%E5%88%86%E7%B1%BB%E5%99%A8/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-XXXXXXXXXX');
+        }
+      </script><meta property="og:title" content="" />
+<meta property="og:description" content="从零实现线性神经网络二分类器
+import numpy as np  
+from collections import defaultdict
+import matplotlib.pyplot as plt
+  本文主要旨在从零对算法进行实现，因此对算法原理的阐述将保持简洁。接下来，我们将概述感知机和逻辑斯蒂回归（Logistic Regression）的基本原理，并提供从零实现这两种算法的示例。此外，我们还将通过启发式方法探讨它们在实际应用中的局限性。
+感知机
+算法原理
+感知机（Perceptron）是一种基础的线性分类模型，最早由弗兰克·罗森布拉特 (Frank Rosenblatt) 在1958年提出。其主要原理如下：
+1. 模型结构
+感知机由输入节点、权重、偏置和激活函数组成：
+
+输入节点：接收输入特征的值。
+权重：每个输入特征都有一个对应的权重，用于衡量特征的重要性。
+偏置：一个常数项，使模型能够更灵活地拟合数据。
+激活函数：通常是阶跃函数，将加权和转换为输出（0或1）。
+
+2. 工作流程
+
+
+加权求和：计算输入特征与对应权重的加权和：
+$$
+z = \sum_{i=1}^{n} w_i x_i &#43; b
+$$
+其中，$ w_i $ 是权重，$ x_i $ 是输入特征，$ b $ 是偏置。
+
+
+应用激活函数：将加权和 (z) 输入到激活函数中，决定输出类别：
+$$
+y = f(z)
+$$
+典型的激活函数为阶跃函数：
+$$
+f(z) =
+\begin{cases}
+1 &amp; \text{if } z \geq 0 \
+0 &amp; \text{if } z &lt; 0
+\end{cases}
+$$" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://Rookie-AI.github.io/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/01.%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0%E7%BA%BF%E6%80%A7%E7%A5%9E%E7%BB%8F%E5%85%83%E4%BA%8C%E5%88%86%E7%B1%BB%E5%99%A8/01.%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0%E7%BA%BF%E6%80%A7%E7%A5%9E%E7%BB%8F%E5%85%83%E4%BA%8C%E5%88%86%E7%B1%BB%E5%99%A8/" /><meta property="article:section" content="从零实现深度学习" />
+
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content=""/>
+<meta name="twitter:description" content="从零实现线性神经网络二分类器
+import numpy as np  
+from collections import defaultdict
+import matplotlib.pyplot as plt
+  本文主要旨在从零对算法进行实现，因此对算法原理的阐述将保持简洁。接下来，我们将概述感知机和逻辑斯蒂回归（Logistic Regression）的基本原理，并提供从零实现这两种算法的示例。此外，我们还将通过启发式方法探讨它们在实际应用中的局限性。
+感知机
+算法原理
+感知机（Perceptron）是一种基础的线性分类模型，最早由弗兰克·罗森布拉特 (Frank Rosenblatt) 在1958年提出。其主要原理如下：
+1. 模型结构
+感知机由输入节点、权重、偏置和激活函数组成：
+
+输入节点：接收输入特征的值。
+权重：每个输入特征都有一个对应的权重，用于衡量特征的重要性。
+偏置：一个常数项，使模型能够更灵活地拟合数据。
+激活函数：通常是阶跃函数，将加权和转换为输出（0或1）。
+
+2. 工作流程
+
+
+加权求和：计算输入特征与对应权重的加权和：
+$$
+z = \sum_{i=1}^{n} w_i x_i &#43; b
+$$
+其中，$ w_i $ 是权重，$ x_i $ 是输入特征，$ b $ 是偏置。
+
+
+应用激活函数：将加权和 (z) 输入到激活函数中，决定输出类别：
+$$
+y = f(z)
+$$
+典型的激活函数为阶跃函数：
+$$
+f(z) =
+\begin{cases}
+1 &amp; \text{if } z \geq 0 \
+0 &amp; \text{if } z &lt; 0
+\end{cases}
+$$"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "",
+      "item": "https://Rookie-AI.github.io/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/01.%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0%E7%BA%BF%E6%80%A7%E7%A5%9E%E7%BB%8F%E5%85%83%E4%BA%8C%E5%88%86%E7%B1%BB%E5%99%A8/01.%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0%E7%BA%BF%E6%80%A7%E7%A5%9E%E7%BB%8F%E5%85%83%E4%BA%8C%E5%88%86%E7%B1%BB%E5%99%A8/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "",
+  "name": "",
+  "description": "从零实现线性神经网络二分类器 import numpy as np from collections import defaultdict import matplotlib.pyplot as plt 本文主要旨在从零对算法进行实现，因此对算法原理的阐述将保持简洁。接下来，我们将概述感知机和逻辑斯蒂回归（Logistic Regression）的基本原理，并提供从零实现这两种算法的示例。此外，我们还将通过启发式方法探讨它们在实际应用中的局限性。\n感知机 算法原理 感知机（Perceptron）是一种基础的线性分类模型，最早由弗兰克·罗森布拉特 (Frank Rosenblatt) 在1958年提出。其主要原理如下：\n1. 模型结构 感知机由输入节点、权重、偏置和激活函数组成：\n输入节点：接收输入特征的值。 权重：每个输入特征都有一个对应的权重，用于衡量特征的重要性。 偏置：一个常数项，使模型能够更灵活地拟合数据。 激活函数：通常是阶跃函数，将加权和转换为输出（0或1）。 2. 工作流程 加权求和：计算输入特征与对应权重的加权和：\n$$ z = \\sum_{i=1}^{n} w_i x_i + b\n$$ 其中，$ w_i $ 是权重，$ x_i $ 是输入特征，$ b $ 是偏置。\n应用激活函数：将加权和 (z) 输入到激活函数中，决定输出类别：\n$$ y = f(z)\n$$ 典型的激活函数为阶跃函数：\n$$ f(z) =\n\\begin{cases}\n1 \u0026amp; \\text{if } z \\geq 0 \\\n0 \u0026amp; \\text{if } z \u0026lt; 0\n\\end{cases}\n$$\n",
+  "keywords": [
+    
+  ],
+  "articleBody": "从零实现线性神经网络二分类器 import numpy as np from collections import defaultdict import matplotlib.pyplot as plt 本文主要旨在从零对算法进行实现，因此对算法原理的阐述将保持简洁。接下来，我们将概述感知机和逻辑斯蒂回归（Logistic Regression）的基本原理，并提供从零实现这两种算法的示例。此外，我们还将通过启发式方法探讨它们在实际应用中的局限性。\n感知机 算法原理 感知机（Perceptron）是一种基础的线性分类模型，最早由弗兰克·罗森布拉特 (Frank Rosenblatt) 在1958年提出。其主要原理如下：\n1. 模型结构 感知机由输入节点、权重、偏置和激活函数组成：\n输入节点：接收输入特征的值。 权重：每个输入特征都有一个对应的权重，用于衡量特征的重要性。 偏置：一个常数项，使模型能够更灵活地拟合数据。 激活函数：通常是阶跃函数，将加权和转换为输出（0或1）。 2. 工作流程 加权求和：计算输入特征与对应权重的加权和：\n$$ z = \\sum_{i=1}^{n} w_i x_i + b\n$$ 其中，$ w_i $ 是权重，$ x_i $ 是输入特征，$ b $ 是偏置。\n应用激活函数：将加权和 (z) 输入到激活函数中，决定输出类别：\n$$ y = f(z)\n$$ 典型的激活函数为阶跃函数：\n$$ f(z) =\n\\begin{cases}\n1 \u0026 \\text{if } z \\geq 0 \\\n0 \u0026 \\text{if } z \u003c 0\n\\end{cases}\n$$\n3. 训练过程 感知机使用迭代方法进行训练，主要包括以下步骤：\n初始化权重和偏置：通常设置为小随机值。 更新规则：根据预测错误来调整权重和偏置：\n$$ w_i \\leftarrow w_i + \\eta (y_{\\text{true}} - y_{\\text{pred}}) x_i\n$$ $$ b \\leftarrow b + \\eta (y_{\\text{true}} - y_{\\text{pred}})\n$$ 其中，$\\eta$ 是学习率，$y_{\\text{true}}$ 是真实标签，$y_{\\text{pred}}$ 是模型预测值。 从零实现 class Perceptron: def __init__(self, learning_rate=0.01, n_iter=1000): self.learning_rate = learning_rate # 学习率 self.n_iter = n_iter # 迭代次数 self.weights = None # 权重初始化 self.bias = None # 偏置初始化 def fit(self, X, y): \"\"\" 训练感知机模型 :param X: 输入特征数据，形状为 (n_samples, n_features) :param y: 标签数据，形状为 (n_samples,) \"\"\" n_samples, n_features = X.shape self.weights = np.zeros(n_features) # 初始化权重为零 self.bias = 0 # 初始化偏置为零 # 迭代更新权重 for _ in range(self.n_iter): for idx, x_i in enumerate(X): linear_output = np.dot(x_i, self.weights) + self.bias # 计算加权和 y_predicted = self.activation_function(linear_output) # 应用激活函数 # 更新规则 update = self.learning_rate * (y[idx] - y_predicted) # 计算更新量 self.weights += update * x_i # 更新权重 self.bias += update # 更新偏置 def activation_function(self, x:np.ndarray): \"\"\" 激活函数 :param x: 输入值 :return: 二分类输出（0或1） \"\"\" return (x \u003e= 0).astype(int) # 阶跃函数，返回0或1 def predict(self, X): \"\"\" 对新数据进行预测 :param X: 输入特征数据，形状为 (n_samples, n_features) :return: 预测类别 \"\"\" assert self.weights is not None assert self.bias is not None linear_output = np.dot(X, self.weights) + self.bias # 计算加权和 y_predicted = self.activation_function(linear_output) # 应用激活函数 return y_predicted 启发性认识 下面我们分别构造一组二元分类的特征, 并基于不同类型的标签(与门、与非门、或门和异或门)进行学习\n数据构造 # 创建一个简单的二分类数据集 X = np.array([[0, 0], [0, 1], [1, 0], [1, 1]]) # 输入特征 y_and = np.array([0, 0, 0, 1]) # 与门的输出 y_nand = np.array([1, 1, 1, 0]) # 非与门 y_or = np.array([0, 1, 1, 1]) # 或门 y_xor = np.array([0, 1, 1, 0]) # 异或门 进行训练和预测 res_dict = defaultdict(dict) for y_type, y in zip(('AND', 'NAND', 'OR', 'XOR'), (y_and, y_nand, y_or, y_xor)): perceptron = Perceptron(learning_rate=0.1, n_iter=10) # 初始化感知机 perceptron.fit(X, y) # 训练感知机 predictions = perceptron.predict(X) # 进行预测 save_res = res_dict[y_type] save_res['weights'] = perceptron.weights save_res['bias'] = perceptron.bias save_res['y_hat'] = predictions save_res['y'] = y save_res['X'] = X 打印结果 for y_type, results in res_dict.items(): print(y_type) print(f\"{'y:':10}{results['y']}\") print(f\"{'y_hat:':10}{results['y_hat']}\") print(f\"{'weights:':10}{results['weights']}\") print(f\"{'bias:':10}{results['bias']: .2f}\") print(\"=\" * 40) # 分隔线 AND y: [0 0 0 1] y_hat: [0 0 0 1] weights: [0.2 0.1] bias: -0.20 ======================================== NAND y: [1 1 1 0] y_hat: [1 1 1 0] weights: [-0.2 -0.1] bias: 0.20 ======================================== OR y: [0 1 1 1] y_hat: [0 1 1 1] weights: [0.1 0.1] bias: -0.10 ======================================== XOR y: [0 1 1 0] y_hat: [1 1 0 0] weights: [-0.1 0. ] bias: 0.00 ======================================== 可以看出, 除了XOR, 其它的都正确分类了\n可视化演示 x = np.arange(-1, 2, 0.1) fig, axes = plt.subplots(nrows=2, ncols=2, figsize=(10, 10)) axes = axes.flatten() for ax, (k, v) in zip(axes, res_dict.items()): ax: plt.Axes y_line = (- v['weights'][0] / (v['weights'][1] + 1e-10)) * x - v['bias'] / (v['weights'][1] + 1e-10) # 1e-10 防止分母为0 ax.scatter(*v['X'][v['y'] == 1].T, marker='o', c='green', s=100) ax.scatter(*v['X'][v['y'] == 0].T, marker='x', c='red', s=100) ax.plot(x, y_line) ax.set_title(k) ax.set_xlabel('x') ax.set_ylabel('y') ax.set_xlim(-1, 2) # 设置 x 轴范围 ax.set_ylim(-1, 2) ax.grid(True) plt.show() ​ ​\n可以看出, 感知机算法可以实现与门, 但是异或门却无法线性可分。\nLogistic回归 算法原理 1. 模型假设 逻辑斯蒂回归的核心思想是通过逻辑函数来预测事件的概率。其主要步骤包括：\n线性组合：与线性回归类似，逻辑斯蒂回归首先计算输入特征的线性组合，即：\n$$ z = W^T x + b\n$$ 其中 $W$ 是权重向量，$x$ 是输入特征，$b$ 是偏置。 2. 激活函数 Sigmoid 函数：逻辑斯蒂回归使用sigmoid函数将线性组合的结果 $z$ 转换为一个介于 0 和 1 之间的概率值，公式为：\n$$ P(y=1|x) = \\frac{1}{1 + e^{-z}}\n$$ 这里 $P(y=1|x)$ 表示在给定特征 $x$ 的情况下，样本属于正类的概率。 3. 决策边界 分类决策：将得到的概率与一个阈值（通常是0.5）进行比较。如果概率大于 0.5，则判断为正类（例如1），否则为负类（例如0）。因此，逻辑斯蒂回归通过定义一个决策边界来进行分类。 4. 损失函数 对数损失：为了训练模型，逻辑斯蒂回归使用对数损失（log loss）作为损失函数，目标是最小化该损失。损失函数定义为：\n$$ L(W, b) = -\\frac{1}{m} \\sum_{i=1}^{m} \\left( y^{(i)} \\log(P(y^{(i)}=1|x^{(i)})) + (1 - y^{(i)}) \\log(1 - P(y^{(i)}=1|x^{(i)})) \\right)\n$$ 其中 $m$ 是样本总数，$y^{(i)}$ 是第 $i$ 个样本的真实标签。 5. 优化 训练过程：使用梯度下降法或其他优化算法（如拟牛顿法）来更新权重 $W$ 和偏置 $b$，直至找到最佳参数以最小化损失函数。 从零实现 class LogisticRegression: def __init__(self, learning_rate=0.1, num_iterations=1000): \"\"\" 初始化逻辑斯蒂回归模型。 参数: learning_rate: 学习率，用于梯度下降法。 num_iterations: 迭代次数。 \"\"\" self.learning_rate = learning_rate self.num_iterations = num_iterations self.weights = None self.bias = None def sigmoid(self, z): return 1 / (1 + np.exp(-z)) def fit(self, X, y): \"\"\" 训练模型，拟合权重和偏置。 参数: X: 输入特征，形状为(n_samples, n_features)的数组。 y: 标签，形状为(n_samples,)的数组。 \"\"\" num_samples, num_features = X.shape self.weights = np.zeros(num_features) # 初始化权重为零 self.bias = 0 # 初始化偏置为零 for _ in range(self.num_iterations): linear_model = np.dot(X, self.weights) + self.bias y_predicted = self.sigmoid(linear_model) # 计算梯度 dw = (1 / num_samples) * (y_predicted - y) @ X db = (1 / num_samples) * np.sum(y_predicted - y) # 更新权重和偏置 self.weights -= self.learning_rate * dw self.bias -= self.learning_rate * db def predict(self, X): assert self.weights is not None assert self.bias is not None linear_model = np.dot(X, self.weights) + self.bias y_predicted = self.sigmoid(linear_model) return [1 if i \u003e 0.5 else 0 for i in y_predicted] 启发性认识 下面我们继续使用之前的数据进行学习\n采用梯度下降进行迭代训练 logistic_res_dict = defaultdict(dict) for y_type, y in zip(('AND', 'NAND', 'OR', 'XOR'), (y_and, y_nand, y_or, y_xor)): model_gd = LogisticRegression(learning_rate=0.1, num_iterations=1000) # 采用梯度下降 model_gd.fit(X, y) # 训练感知机 predictions = model_gd.predict(X) # 进行预测 save_res = logistic_res_dict[y_type] save_res['weights'] = perceptron.weights save_res['bias'] = perceptron.bias save_res['y_hat'] = predictions save_res['y'] = y save_res['X'] = X 打印结果并可视化演示 for y_type, results in logistic_res_dict.items(): print(y_type) print(f\"{'y:':10}{results['y']}\") print(f\"{'y_hat:':10}{results['y_hat']}\") print(f\"{'weights:':10}{results['weights']}\") print(f\"{'bias:':10}{results['bias']: .2f}\") print(\"=\" * 40) # 分隔线 x = np.arange(-1, 2, 0.1) fig, axes = plt.subplots(nrows=2, ncols=2, figsize=(10, 10)) axes = axes.flatten() for ax, (k, v) in zip(axes, res_dict.items()): ax: plt.Axes y_line = (- v['weights'][0] / (v['weights'][1] + 1e-10)) * x - v['bias'] / (v['weights'][1] + 1e-10) # 1e-10 防止分母为0 ax.scatter(*v['X'][v['y'] == 1].T, marker='o', c='green', s=100) ax.scatter(*v['X'][v['y'] == 0].T, marker='x', c='red', s=100) ax.plot(x, y_line) ax.set_title(k) ax.set_xlabel('x') ax.set_ylabel('y') ax.set_xlim(-1, 2) # 设置 x 轴范围 ax.set_ylim(-1, 2) ax.grid(True) plt.show() AND y: [0 0 0 1] y_hat: [0, 0, 0, 1] weights: [-0.1 0. ] bias: 0.00 ======================================== NAND y: [1 1 1 0] y_hat: [1, 1, 1, 0] weights: [-0.1 0. ] bias: 0.00 ======================================== OR y: [0 1 1 1] y_hat: [0, 1, 1, 1] weights: [-0.1 0. ] bias: 0.00 ======================================== XOR y: [0 1 1 0] y_hat: [0, 0, 0, 0] weights: [-0.1 0. ] bias: 0.00 ======================================== 显然, 同样的结果。\n总结 相信很多朋友发现, 感知机模型和逻辑斯蒂回归这两者在结构上挺像的，都可以看作是单个神经元的模型，但它们使用了不同的激活函数。\n首先，感知机一般使用阶跃函数，这种函数的特点是，当输入大于某个值时，输出就是1；否则就是0。而逻辑斯蒂回归则使用的是sigmoid函数，它把输出压缩到0到1之间，非常适合做概率预测。\n在损失函数方面, 感知机采用的是铰链损失，这种损失关注的是分类错误的样本。而逻辑斯蒂回归使用的是对数损失。这种损失的目标是最大化似然函数，换句话说，就是让模型尽量准确地预测出每个样本的概率。\n在优化方面，感知机有自己的一套学习算法，它通过不断的迭代来更新权重，直到所有训练样本都被正确分类，或者满足了某些迭代条件。而逻辑斯蒂回归通常会采用梯度下降法或者拟牛顿法这样的优化方法，反复调整权重，力求找到最好的参数组合，最小化损失函数。\n感知机模型和逻辑斯蒂回归通常解决的是二分类问题, 那么对于多分类问题呢? 通常我们采用的是逻辑斯蒂回归的扩展版: SoftMax回归, 它采用了单层的多个神经元, 并加入了softmax层将每个神经元最后的输出转化为对应每个分类的概率。下期将为大家来从零实现这个softmax回归。\n",
+  "wordCount" : "981",
+  "inLanguage": "en",
+  "datePublished": "0001-01-01T00:00:00Z",
+  "dateModified": "0001-01-01T00:00:00Z",
+  "author":{
+    "@type": "Person",
+    "name": "Rookie AI"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://Rookie-AI.github.io/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/01.%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0%E7%BA%BF%E6%80%A7%E7%A5%9E%E7%BB%8F%E5%85%83%E4%BA%8C%E5%88%86%E7%B1%BB%E5%99%A8/01.%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0%E7%BA%BF%E6%80%A7%E7%A5%9E%E7%BB%8F%E5%85%83%E4%BA%8C%E5%88%86%E7%B1%BB%E5%99%A8/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rookie AI",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://Rookie-AI.github.io/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://Rookie-AI.github.io/" accesskey="h" title="Rookie AI (Alt + H)">Rookie AI</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+                <ul class="lang-switch"><li>|</li>
+                    <li>
+                        <a href="https://Rookie-AI.github.io/zh/" title="中文"
+                            aria-label="中文">Zh</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://Rookie-AI.github.io/" title="首页">
+                    <span>首页</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://Rookie-AI.github.io/notebook/" title="笔记">
+                    <span>笔记</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://Rookie-AI.github.io/works/" title="作品">
+                    <span>作品</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://Rookie-AI.github.io/idea/" title="想法">
+                    <span>想法</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://Rookie-AI.github.io/about/" title="关于">
+                    <span>关于</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://Rookie-AI.github.io/">Home</a></div>
+    <h1 class="post-title entry-hint-parent">
+      
+    </h1>
+    <div class="post-meta">5 min&nbsp;·&nbsp;Rookie AI&nbsp;|&nbsp;<a href="https://github.com/ROOKIE-AI/Rookie-AI.github.io/%e4%bb%8e%e9%9b%b6%e5%ae%9e%e7%8e%b0%e6%b7%b1%e5%ba%a6%e5%ad%a6%e4%b9%a0/01.%e4%bb%8e%e9%9b%b6%e5%ae%9e%e7%8e%b0%e7%ba%bf%e6%80%a7%e7%a5%9e%e7%bb%8f%e5%85%83%e4%ba%8c%e5%88%86%e7%b1%bb%e5%99%a8/01.%e4%bb%8e%e9%9b%b6%e5%ae%9e%e7%8e%b0%e7%ba%bf%e6%80%a7%e7%a5%9e%e7%bb%8f%e5%85%83%e4%ba%8c%e5%88%86%e7%b1%bb%e5%99%a8.md" rel="noopener noreferrer" target="_blank">Rookie.AI</a>
+
+</div>
+  </header> <div class="toc">
+    <details >
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">目录</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#%e4%bb%8e%e9%9b%b6%e5%ae%9e%e7%8e%b0%e7%ba%bf%e6%80%a7%e7%a5%9e%e7%bb%8f%e7%bd%91%e7%bb%9c%e4%ba%8c%e5%88%86%e7%b1%bb%e5%99%a8" aria-label="从零实现线性神经网络二分类器">从零实现线性神经网络二分类器</a><ul>
+                        
+                <li>
+                    <a href="#%e6%84%9f%e7%9f%a5%e6%9c%ba" aria-label="感知机">感知机</a><ul>
+                        
+                <li>
+                    <a href="#%e7%ae%97%e6%b3%95%e5%8e%9f%e7%90%86" aria-label="算法原理">算法原理</a><ul>
+                        
+                <li>
+                    <a href="#1-%e6%a8%a1%e5%9e%8b%e7%bb%93%e6%9e%84" aria-label="1. 模型结构">1. 模型结构</a></li>
+                <li>
+                    <a href="#2-%e5%b7%a5%e4%bd%9c%e6%b5%81%e7%a8%8b" aria-label="2. 工作流程">2. 工作流程</a></li>
+                <li>
+                    <a href="#3-%e8%ae%ad%e7%bb%83%e8%bf%87%e7%a8%8b" aria-label="3. 训练过程">3. 训练过程</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e4%bb%8e%e9%9b%b6%e5%ae%9e%e7%8e%b0" aria-label="从零实现">从零实现</a></li>
+                <li>
+                    <a href="#%e5%90%af%e5%8f%91%e6%80%a7%e8%ae%a4%e8%af%86" aria-label="启发性认识">启发性认识</a><ul>
+                        
+                <li>
+                    <a href="#%e6%95%b0%e6%8d%ae%e6%9e%84%e9%80%a0" aria-label="数据构造">数据构造</a></li>
+                <li>
+                    <a href="#%e8%bf%9b%e8%a1%8c%e8%ae%ad%e7%bb%83%e5%92%8c%e9%a2%84%e6%b5%8b" aria-label="进行训练和预测">进行训练和预测</a></li>
+                <li>
+                    <a href="#%e6%89%93%e5%8d%b0%e7%bb%93%e6%9e%9c" aria-label="打印结果">打印结果</a></li>
+                <li>
+                    <a href="#%e5%8f%af%e8%a7%86%e5%8c%96%e6%bc%94%e7%a4%ba" aria-label="可视化演示">可视化演示</a></li></ul>
+                </li></ul>
+                </li>
+                <li>
+                    <a href="#logistic%e5%9b%9e%e5%bd%92" aria-label="Logistic回归">Logistic回归</a><ul>
+                        
+                <li>
+                    <a href="#%e7%ae%97%e6%b3%95%e5%8e%9f%e7%90%86-1" aria-label="算法原理">算法原理</a><ul>
+                        
+                <li>
+                    <a href="#1-%e6%a8%a1%e5%9e%8b%e5%81%87%e8%ae%be" aria-label="1. 模型假设">1. 模型假设</a></li>
+                <li>
+                    <a href="#2-%e6%bf%80%e6%b4%bb%e5%87%bd%e6%95%b0" aria-label="2. 激活函数">2. 激活函数</a></li>
+                <li>
+                    <a href="#3-%e5%86%b3%e7%ad%96%e8%be%b9%e7%95%8c" aria-label="3. 决策边界">3. 决策边界</a></li>
+                <li>
+                    <a href="#4-%e6%8d%9f%e5%a4%b1%e5%87%bd%e6%95%b0" aria-label="4. 损失函数">4. 损失函数</a></li>
+                <li>
+                    <a href="#5-%e4%bc%98%e5%8c%96" aria-label="5. 优化">5. 优化</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e4%bb%8e%e9%9b%b6%e5%ae%9e%e7%8e%b0-1" aria-label="从零实现">从零实现</a></li>
+                <li>
+                    <a href="#%e5%90%af%e5%8f%91%e6%80%a7%e8%ae%a4%e8%af%86-1" aria-label="启发性认识">启发性认识</a><ul>
+                        
+                <li>
+                    <a href="#%e9%87%87%e7%94%a8%e6%a2%af%e5%ba%a6%e4%b8%8b%e9%99%8d%e8%bf%9b%e8%a1%8c%e8%bf%ad%e4%bb%a3%e8%ae%ad%e7%bb%83" aria-label="采用梯度下降进行迭代训练">采用梯度下降进行迭代训练</a></li>
+                <li>
+                    <a href="#%e6%89%93%e5%8d%b0%e7%bb%93%e6%9e%9c%e5%b9%b6%e5%8f%af%e8%a7%86%e5%8c%96%e6%bc%94%e7%a4%ba" aria-label="打印结果并可视化演示">打印结果并可视化演示</a></li></ul>
+                </li></ul>
+                </li>
+                <li>
+                    <a href="#%e6%80%bb%e7%bb%93" aria-label="总结">总结</a>
+                </li>
+            </ul>
+            </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><h1 id="从零实现线性神经网络二分类器">从零实现线性神经网络二分类器<a hidden class="anchor" aria-hidden="true" href="#从零实现线性神经网络二分类器">#</a></h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> numpy <span style="color:#66d9ef">as</span> np  
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> collections <span style="color:#f92672">import</span> defaultdict
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> matplotlib.pyplot <span style="color:#66d9ef">as</span> plt
+</span></span></code></pre></div><p>  本文主要旨在从零对算法进行实现，因此对算法原理的阐述将保持简洁。接下来，我们将概述感知机和逻辑斯蒂回归（Logistic Regression）的基本原理，并提供从零实现这两种算法的示例。此外，我们还将通过启发式方法探讨它们在实际应用中的局限性。</p>
+<h2 id="感知机">感知机<a hidden class="anchor" aria-hidden="true" href="#感知机">#</a></h2>
+<h3 id="算法原理">算法原理<a hidden class="anchor" aria-hidden="true" href="#算法原理">#</a></h3>
+<p>感知机（Perceptron）是一种基础的线性分类模型，最早由弗兰克·罗森布拉特 (Frank Rosenblatt) 在1958年提出。其主要原理如下：</p>
+<h4 id="1-模型结构">1. 模型结构<a hidden class="anchor" aria-hidden="true" href="#1-模型结构">#</a></h4>
+<p>感知机由输入节点、权重、偏置和激活函数组成：</p>
+<ul>
+<li><strong>输入节点</strong>：接收输入特征的值。</li>
+<li><strong>权重</strong>：每个输入特征都有一个对应的权重，用于衡量特征的重要性。</li>
+<li><strong>偏置</strong>：一个常数项，使模型能够更灵活地拟合数据。</li>
+<li><strong>激活函数</strong>：通常是阶跃函数，将加权和转换为输出（0或1）。</li>
+</ul>
+<h4 id="2-工作流程">2. 工作流程<a hidden class="anchor" aria-hidden="true" href="#2-工作流程">#</a></h4>
+<ol>
+<li>
+<p><strong>加权求和</strong>：计算输入特征与对应权重的加权和：<br>
+$$
+z = \sum_{i=1}^{n} w_i x_i + b<br>
+$$
+其中，$ w_i $ 是权重，$ x_i $ 是输入特征，$ b $ 是偏置。</p>
+</li>
+<li>
+<p><strong>应用激活函数</strong>：将加权和 (z) 输入到激活函数中，决定输出类别：<br>
+$$
+y = f(z)<br>
+$$
+典型的激活函数为阶跃函数：<br>
+$$
+f(z) =<br>
+\begin{cases}<br>
+1 &amp; \text{if } z \geq 0 \<br>
+0 &amp; \text{if } z &lt; 0<br>
+\end{cases}<br>
+$$</p>
+</li>
+</ol>
+<h4 id="3-训练过程">3. 训练过程<a hidden class="anchor" aria-hidden="true" href="#3-训练过程">#</a></h4>
+<p>感知机使用迭代方法进行训练，主要包括以下步骤：</p>
+<ul>
+<li><strong>初始化权重和偏置</strong>：通常设置为小随机值。</li>
+<li><strong>更新规则</strong>：根据预测错误来调整权重和偏置：<br>
+$$
+w_i \leftarrow w_i + \eta (y_{\text{true}} - y_{\text{pred}}) x_i<br>
+$$
+$$
+b \leftarrow b + \eta (y_{\text{true}} - y_{\text{pred}})<br>
+$$
+其中，$\eta$ 是学习率，$y_{\text{true}}$ 是真实标签，$y_{\text{pred}}$ 是模型预测值。</li>
+</ul>
+<h3 id="从零实现">从零实现<a hidden class="anchor" aria-hidden="true" href="#从零实现">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Perceptron</span>:  
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __init__(self, learning_rate<span style="color:#f92672">=</span><span style="color:#ae81ff">0.01</span>, n_iter<span style="color:#f92672">=</span><span style="color:#ae81ff">1000</span>):  
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>learning_rate <span style="color:#f92672">=</span> learning_rate  <span style="color:#75715e"># 学习率  </span>
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>n_iter <span style="color:#f92672">=</span> n_iter  <span style="color:#75715e"># 迭代次数  </span>
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>weights <span style="color:#f92672">=</span> <span style="color:#66d9ef">None</span>  <span style="color:#75715e"># 权重初始化  </span>
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>bias <span style="color:#f92672">=</span> <span style="color:#66d9ef">None</span>  <span style="color:#75715e"># 偏置初始化  </span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">fit</span>(self, X, y):  
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;&#34;&#34;  
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        训练感知机模型  
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        :param X: 输入特征数据，形状为 (n_samples, n_features)  
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        :param y: 标签数据，形状为 (n_samples,)  
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        &#34;&#34;&#34;</span>  
+</span></span><span style="display:flex;"><span>        n_samples, n_features <span style="color:#f92672">=</span> X<span style="color:#f92672">.</span>shape  
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>weights <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>zeros(n_features)  <span style="color:#75715e"># 初始化权重为零  </span>
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>bias <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>  <span style="color:#75715e"># 初始化偏置为零  </span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># 迭代更新权重  </span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> _ <span style="color:#f92672">in</span> range(self<span style="color:#f92672">.</span>n_iter):  
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">for</span> idx, x_i <span style="color:#f92672">in</span> enumerate(X):  
+</span></span><span style="display:flex;"><span>                linear_output <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>dot(x_i, self<span style="color:#f92672">.</span>weights) <span style="color:#f92672">+</span> self<span style="color:#f92672">.</span>bias  <span style="color:#75715e"># 计算加权和  </span>
+</span></span><span style="display:flex;"><span>                y_predicted <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>activation_function(linear_output)  <span style="color:#75715e"># 应用激活函数  </span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e"># 更新规则  </span>
+</span></span><span style="display:flex;"><span>                update <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>learning_rate <span style="color:#f92672">*</span> (y[idx] <span style="color:#f92672">-</span> y_predicted)  <span style="color:#75715e"># 计算更新量  </span>
+</span></span><span style="display:flex;"><span>                self<span style="color:#f92672">.</span>weights <span style="color:#f92672">+=</span> update <span style="color:#f92672">*</span> x_i  <span style="color:#75715e"># 更新权重  </span>
+</span></span><span style="display:flex;"><span>                self<span style="color:#f92672">.</span>bias <span style="color:#f92672">+=</span> update  <span style="color:#75715e"># 更新偏置  </span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">activation_function</span>(self, x:np<span style="color:#f92672">.</span>ndarray):  
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;&#34;&#34;  
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        激活函数  
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        :param x: 输入值  
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        :return: 二分类输出（0或1）  
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        &#34;&#34;&#34;</span>  
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> (x <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span>)<span style="color:#f92672">.</span>astype(int)  <span style="color:#75715e"># 阶跃函数，返回0或1  </span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">predict</span>(self, X):  
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;&#34;&#34;  
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        对新数据进行预测  
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        :param X: 输入特征数据，形状为 (n_samples, n_features)  
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        :return: 预测类别  
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        &#34;&#34;&#34;</span> 
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">assert</span> self<span style="color:#f92672">.</span>weights <span style="color:#f92672">is</span> <span style="color:#f92672">not</span> <span style="color:#66d9ef">None</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">assert</span> self<span style="color:#f92672">.</span>bias <span style="color:#f92672">is</span> <span style="color:#f92672">not</span> <span style="color:#66d9ef">None</span>
+</span></span><span style="display:flex;"><span>        linear_output <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>dot(X, self<span style="color:#f92672">.</span>weights) <span style="color:#f92672">+</span> self<span style="color:#f92672">.</span>bias  <span style="color:#75715e"># 计算加权和  </span>
+</span></span><span style="display:flex;"><span>        y_predicted <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>activation_function(linear_output)  <span style="color:#75715e"># 应用激活函数  </span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> y_predicted  
+</span></span></code></pre></div><h3 id="启发性认识">启发性认识<a hidden class="anchor" aria-hidden="true" href="#启发性认识">#</a></h3>
+<p>下面我们分别构造一组二元分类的特征, 并基于不同类型的标签(与门、与非门、或门和异或门)进行学习</p>
+<h4 id="数据构造">数据构造<a hidden class="anchor" aria-hidden="true" href="#数据构造">#</a></h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 创建一个简单的二分类数据集  </span>
+</span></span><span style="display:flex;"><span>X <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>array([[<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>], [<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>], [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>], [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>]])  <span style="color:#75715e"># 输入特征  </span>
+</span></span><span style="display:flex;"><span>y_and <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>array([<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>])  <span style="color:#75715e"># 与门的输出</span>
+</span></span><span style="display:flex;"><span>y_nand <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>array([<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>]) <span style="color:#75715e"># 非与门</span>
+</span></span><span style="display:flex;"><span>y_or <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>array([<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>])   <span style="color:#75715e"># 或门</span>
+</span></span><span style="display:flex;"><span>y_xor <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>array([<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>])  <span style="color:#75715e"># 异或门</span>
+</span></span></code></pre></div><h4 id="进行训练和预测">进行训练和预测<a hidden class="anchor" aria-hidden="true" href="#进行训练和预测">#</a></h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>res_dict <span style="color:#f92672">=</span> defaultdict(dict)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> y_type, y <span style="color:#f92672">in</span> zip((<span style="color:#e6db74">&#39;AND&#39;</span>, <span style="color:#e6db74">&#39;NAND&#39;</span>, <span style="color:#e6db74">&#39;OR&#39;</span>, <span style="color:#e6db74">&#39;XOR&#39;</span>), (y_and, y_nand, y_or, y_xor)):
+</span></span><span style="display:flex;"><span>    perceptron <span style="color:#f92672">=</span> Perceptron(learning_rate<span style="color:#f92672">=</span><span style="color:#ae81ff">0.1</span>, n_iter<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>)  <span style="color:#75715e"># 初始化感知机  </span>
+</span></span><span style="display:flex;"><span>    perceptron<span style="color:#f92672">.</span>fit(X, y)  <span style="color:#75715e"># 训练感知机  </span>
+</span></span><span style="display:flex;"><span>    predictions <span style="color:#f92672">=</span> perceptron<span style="color:#f92672">.</span>predict(X)  <span style="color:#75715e"># 进行预测  </span>
+</span></span><span style="display:flex;"><span>    save_res <span style="color:#f92672">=</span> res_dict[y_type]
+</span></span><span style="display:flex;"><span>    save_res[<span style="color:#e6db74">&#39;weights&#39;</span>] <span style="color:#f92672">=</span> perceptron<span style="color:#f92672">.</span>weights
+</span></span><span style="display:flex;"><span>    save_res[<span style="color:#e6db74">&#39;bias&#39;</span>] <span style="color:#f92672">=</span> perceptron<span style="color:#f92672">.</span>bias
+</span></span><span style="display:flex;"><span>    save_res[<span style="color:#e6db74">&#39;y_hat&#39;</span>] <span style="color:#f92672">=</span> predictions
+</span></span><span style="display:flex;"><span>    save_res[<span style="color:#e6db74">&#39;y&#39;</span>] <span style="color:#f92672">=</span> y
+</span></span><span style="display:flex;"><span>    save_res[<span style="color:#e6db74">&#39;X&#39;</span>] <span style="color:#f92672">=</span> X
+</span></span></code></pre></div><h4 id="打印结果">打印结果<a hidden class="anchor" aria-hidden="true" href="#打印结果">#</a></h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">for</span> y_type, results <span style="color:#f92672">in</span> res_dict<span style="color:#f92672">.</span>items():  
+</span></span><span style="display:flex;"><span>    print(y_type)  
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">{</span><span style="color:#e6db74">&#39;y:&#39;</span><span style="color:#e6db74">:</span><span style="color:#e6db74">10</span><span style="color:#e6db74">}{</span>results[<span style="color:#e6db74">&#39;y&#39;</span>]<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)  
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">{</span><span style="color:#e6db74">&#39;y_hat:&#39;</span><span style="color:#e6db74">:</span><span style="color:#e6db74">10</span><span style="color:#e6db74">}{</span>results[<span style="color:#e6db74">&#39;y_hat&#39;</span>]<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)   
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">{</span><span style="color:#e6db74">&#39;weights:&#39;</span><span style="color:#e6db74">:</span><span style="color:#e6db74">10</span><span style="color:#e6db74">}{</span>results[<span style="color:#e6db74">&#39;weights&#39;</span>]<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)  
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">{</span><span style="color:#e6db74">&#39;bias:&#39;</span><span style="color:#e6db74">:</span><span style="color:#e6db74">10</span><span style="color:#e6db74">}{</span>results[<span style="color:#e6db74">&#39;bias&#39;</span>]<span style="color:#e6db74">:</span><span style="color:#e6db74"> .2f</span><span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)  
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#34;=&#34;</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">40</span>)  <span style="color:#75715e"># 分隔线  </span>
+</span></span></code></pre></div><pre><code>AND
+y:        [0 0 0 1]
+y_hat:    [0 0 0 1]
+weights:  [0.2 0.1]
+bias:     -0.20
+========================================
+NAND
+y:        [1 1 1 0]
+y_hat:    [1 1 1 0]
+weights:  [-0.2 -0.1]
+bias:      0.20
+========================================
+OR
+y:        [0 1 1 1]
+y_hat:    [0 1 1 1]
+weights:  [0.1 0.1]
+bias:     -0.10
+========================================
+XOR
+y:        [0 1 1 0]
+y_hat:    [1 1 0 0]
+weights:  [-0.1  0. ]
+bias:      0.00
+========================================
+</code></pre>
+<blockquote>
+<p>可以看出, 除了XOR, 其它的都正确分类了</p>
+</blockquote>
+<h4 id="可视化演示">可视化演示<a hidden class="anchor" aria-hidden="true" href="#可视化演示">#</a></h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>x <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>arange(<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">0.1</span>)  
+</span></span><span style="display:flex;"><span>fig, axes <span style="color:#f92672">=</span> plt<span style="color:#f92672">.</span>subplots(nrows<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>, ncols<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>, figsize<span style="color:#f92672">=</span>(<span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">10</span>))
+</span></span><span style="display:flex;"><span>axes <span style="color:#f92672">=</span> axes<span style="color:#f92672">.</span>flatten()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> ax, (k, v) <span style="color:#f92672">in</span> zip(axes, res_dict<span style="color:#f92672">.</span>items()):
+</span></span><span style="display:flex;"><span>    ax: plt<span style="color:#f92672">.</span>Axes
+</span></span><span style="display:flex;"><span>    y_line <span style="color:#f92672">=</span> (<span style="color:#f92672">-</span> v[<span style="color:#e6db74">&#39;weights&#39;</span>][<span style="color:#ae81ff">0</span>] <span style="color:#f92672">/</span> (v[<span style="color:#e6db74">&#39;weights&#39;</span>][<span style="color:#ae81ff">1</span>] <span style="color:#f92672">+</span> <span style="color:#ae81ff">1e-10</span>)) <span style="color:#f92672">*</span> x <span style="color:#f92672">-</span>  v[<span style="color:#e6db74">&#39;bias&#39;</span>] <span style="color:#f92672">/</span> (v[<span style="color:#e6db74">&#39;weights&#39;</span>][<span style="color:#ae81ff">1</span>] <span style="color:#f92672">+</span> <span style="color:#ae81ff">1e-10</span>)   <span style="color:#75715e"># 1e-10 防止分母为0</span>
+</span></span><span style="display:flex;"><span>    ax<span style="color:#f92672">.</span>scatter(<span style="color:#f92672">*</span>v[<span style="color:#e6db74">&#39;X&#39;</span>][v[<span style="color:#e6db74">&#39;y&#39;</span>] <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>]<span style="color:#f92672">.</span>T, marker<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;o&#39;</span>, c<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;green&#39;</span>, s<span style="color:#f92672">=</span><span style="color:#ae81ff">100</span>)
+</span></span><span style="display:flex;"><span>    ax<span style="color:#f92672">.</span>scatter(<span style="color:#f92672">*</span>v[<span style="color:#e6db74">&#39;X&#39;</span>][v[<span style="color:#e6db74">&#39;y&#39;</span>] <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>T, marker<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;x&#39;</span>, c<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;red&#39;</span>, s<span style="color:#f92672">=</span><span style="color:#ae81ff">100</span>)
+</span></span><span style="display:flex;"><span>    ax<span style="color:#f92672">.</span>plot(x, y_line)
+</span></span><span style="display:flex;"><span>    ax<span style="color:#f92672">.</span>set_title(k)
+</span></span><span style="display:flex;"><span>    ax<span style="color:#f92672">.</span>set_xlabel(<span style="color:#e6db74">&#39;x&#39;</span>)  
+</span></span><span style="display:flex;"><span>    ax<span style="color:#f92672">.</span>set_ylabel(<span style="color:#e6db74">&#39;y&#39;</span>)  
+</span></span><span style="display:flex;"><span>    ax<span style="color:#f92672">.</span>set_xlim(<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>)  <span style="color:#75715e"># 设置 x 轴范围  </span>
+</span></span><span style="display:flex;"><span>    ax<span style="color:#f92672">.</span>set_ylim(<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>)  
+</span></span><span style="display:flex;"><span>    ax<span style="color:#f92672">.</span>grid(<span style="color:#66d9ef">True</span>)  
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>show()  
+</span></span></code></pre></div><p>​ <br>
+<img loading="lazy" src="output_17_0.png" alt="png"  />
+
+​</p>
+<p>  可以看出, 感知机算法可以实现与门, 但是异或门却无法线性可分。</p>
+<h2 id="logistic回归">Logistic回归<a hidden class="anchor" aria-hidden="true" href="#logistic回归">#</a></h2>
+<h3 id="算法原理-1">算法原理<a hidden class="anchor" aria-hidden="true" href="#算法原理-1">#</a></h3>
+<h4 id="1-模型假设">1. 模型假设<a hidden class="anchor" aria-hidden="true" href="#1-模型假设">#</a></h4>
+<p>逻辑斯蒂回归的核心思想是通过逻辑函数来预测事件的概率。其主要步骤包括：</p>
+<ul>
+<li><strong>线性组合</strong>：与线性回归类似，逻辑斯蒂回归首先计算输入特征的线性组合，即：<br>
+$$
+z = W^T x + b<br>
+$$
+其中 $W$ 是权重向量，$x$ 是输入特征，$b$ 是偏置。</li>
+</ul>
+<h4 id="2-激活函数">2. 激活函数<a hidden class="anchor" aria-hidden="true" href="#2-激活函数">#</a></h4>
+<ul>
+<li><strong>Sigmoid 函数</strong>：逻辑斯蒂回归使用sigmoid函数将线性组合的结果 $z$ 转换为一个介于 0 和 1 之间的概率值，公式为：<br>
+$$
+P(y=1|x) = \frac{1}{1 + e^{-z}}<br>
+$$
+这里 $P(y=1|x)$ 表示在给定特征 $x$ 的情况下，样本属于正类的概率。</li>
+</ul>
+<h4 id="3-决策边界">3. 决策边界<a hidden class="anchor" aria-hidden="true" href="#3-决策边界">#</a></h4>
+<ul>
+<li><strong>分类决策</strong>：将得到的概率与一个阈值（通常是0.5）进行比较。如果概率大于 0.5，则判断为正类（例如1），否则为负类（例如0）。因此，逻辑斯蒂回归通过定义一个决策边界来进行分类。</li>
+</ul>
+<h4 id="4-损失函数">4. 损失函数<a hidden class="anchor" aria-hidden="true" href="#4-损失函数">#</a></h4>
+<ul>
+<li><strong>对数损失</strong>：为了训练模型，逻辑斯蒂回归使用对数损失（log loss）作为损失函数，目标是最小化该损失。损失函数定义为：<br>
+$$
+L(W, b) = -\frac{1}{m} \sum_{i=1}^{m} \left( y^{(i)} \log(P(y^{(i)}=1|x^{(i)})) + (1 - y^{(i)}) \log(1 - P(y^{(i)}=1|x^{(i)})) \right)<br>
+$$
+其中 $m$ 是样本总数，$y^{(i)}$ 是第 $i$ 个样本的真实标签。</li>
+</ul>
+<h4 id="5-优化">5. 优化<a hidden class="anchor" aria-hidden="true" href="#5-优化">#</a></h4>
+<ul>
+<li><strong>训练过程</strong>：使用梯度下降法或其他优化算法（如拟牛顿法）来更新权重 $W$ 和偏置 $b$，直至找到最佳参数以最小化损失函数。</li>
+</ul>
+<h3 id="从零实现-1">从零实现<a hidden class="anchor" aria-hidden="true" href="#从零实现-1">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">LogisticRegression</span>:  
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __init__(self, learning_rate<span style="color:#f92672">=</span><span style="color:#ae81ff">0.1</span>, num_iterations<span style="color:#f92672">=</span><span style="color:#ae81ff">1000</span>):  
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;&#34;&#34;  
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        初始化逻辑斯蒂回归模型。  
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        参数:  
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        learning_rate: 学习率，用于梯度下降法。  
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        num_iterations: 迭代次数。  
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        &#34;&#34;&#34;</span>  
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>learning_rate <span style="color:#f92672">=</span> learning_rate  
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>num_iterations <span style="color:#f92672">=</span> num_iterations
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>weights <span style="color:#f92672">=</span> <span style="color:#66d9ef">None</span>  
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>bias <span style="color:#f92672">=</span> <span style="color:#66d9ef">None</span>  
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">sigmoid</span>(self, z):    
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">/</span> (<span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span> np<span style="color:#f92672">.</span>exp(<span style="color:#f92672">-</span>z))  
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">fit</span>(self, X, y):  
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;&#34;&#34;  
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        训练模型，拟合权重和偏置。  
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        参数:  
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        X: 输入特征，形状为(n_samples, n_features)的数组。  
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        y: 标签，形状为(n_samples,)的数组。  
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        &#34;&#34;&#34;</span>  
+</span></span><span style="display:flex;"><span>        num_samples, num_features <span style="color:#f92672">=</span> X<span style="color:#f92672">.</span>shape  
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>weights <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>zeros(num_features)  <span style="color:#75715e"># 初始化权重为零  </span>
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>bias <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>  <span style="color:#75715e"># 初始化偏置为零  </span>
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> _ <span style="color:#f92672">in</span> range(self<span style="color:#f92672">.</span>num_iterations):  
+</span></span><span style="display:flex;"><span>            linear_model <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>dot(X, self<span style="color:#f92672">.</span>weights) <span style="color:#f92672">+</span> self<span style="color:#f92672">.</span>bias  
+</span></span><span style="display:flex;"><span>            y_predicted <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>sigmoid(linear_model)  
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># 计算梯度  </span>
+</span></span><span style="display:flex;"><span>            dw <span style="color:#f92672">=</span> (<span style="color:#ae81ff">1</span> <span style="color:#f92672">/</span> num_samples) <span style="color:#f92672">*</span> (y_predicted <span style="color:#f92672">-</span> y) <span style="color:#f92672">@</span> X
+</span></span><span style="display:flex;"><span>            db <span style="color:#f92672">=</span> (<span style="color:#ae81ff">1</span> <span style="color:#f92672">/</span> num_samples) <span style="color:#f92672">*</span> np<span style="color:#f92672">.</span>sum(y_predicted <span style="color:#f92672">-</span> y)  
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># 更新权重和偏置  </span>
+</span></span><span style="display:flex;"><span>            self<span style="color:#f92672">.</span>weights <span style="color:#f92672">-=</span> self<span style="color:#f92672">.</span>learning_rate <span style="color:#f92672">*</span> dw  
+</span></span><span style="display:flex;"><span>            self<span style="color:#f92672">.</span>bias <span style="color:#f92672">-=</span> self<span style="color:#f92672">.</span>learning_rate <span style="color:#f92672">*</span> db  
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">predict</span>(self, X):  
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">assert</span> self<span style="color:#f92672">.</span>weights <span style="color:#f92672">is</span> <span style="color:#f92672">not</span> <span style="color:#66d9ef">None</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">assert</span> self<span style="color:#f92672">.</span>bias <span style="color:#f92672">is</span> <span style="color:#f92672">not</span> <span style="color:#66d9ef">None</span>
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        linear_model <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>dot(X, self<span style="color:#f92672">.</span>weights) <span style="color:#f92672">+</span> self<span style="color:#f92672">.</span>bias  
+</span></span><span style="display:flex;"><span>        y_predicted <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>sigmoid(linear_model)  
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> [<span style="color:#ae81ff">1</span> <span style="color:#66d9ef">if</span> i <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0.5</span> <span style="color:#66d9ef">else</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> y_predicted]
+</span></span></code></pre></div><h3 id="启发性认识-1">启发性认识<a hidden class="anchor" aria-hidden="true" href="#启发性认识-1">#</a></h3>
+<p>下面我们继续使用之前的数据进行学习</p>
+<h4 id="采用梯度下降进行迭代训练">采用梯度下降进行迭代训练<a hidden class="anchor" aria-hidden="true" href="#采用梯度下降进行迭代训练">#</a></h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>logistic_res_dict <span style="color:#f92672">=</span> defaultdict(dict)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> y_type, y <span style="color:#f92672">in</span> zip((<span style="color:#e6db74">&#39;AND&#39;</span>, <span style="color:#e6db74">&#39;NAND&#39;</span>, <span style="color:#e6db74">&#39;OR&#39;</span>, <span style="color:#e6db74">&#39;XOR&#39;</span>), (y_and, y_nand, y_or, y_xor)):
+</span></span><span style="display:flex;"><span>    model_gd <span style="color:#f92672">=</span> LogisticRegression(learning_rate<span style="color:#f92672">=</span><span style="color:#ae81ff">0.1</span>, num_iterations<span style="color:#f92672">=</span><span style="color:#ae81ff">1000</span>)  <span style="color:#75715e"># 采用梯度下降  </span>
+</span></span><span style="display:flex;"><span>    model_gd<span style="color:#f92672">.</span>fit(X, y)  <span style="color:#75715e"># 训练感知机  </span>
+</span></span><span style="display:flex;"><span>    predictions <span style="color:#f92672">=</span> model_gd<span style="color:#f92672">.</span>predict(X)  <span style="color:#75715e"># 进行预测  </span>
+</span></span><span style="display:flex;"><span>    save_res <span style="color:#f92672">=</span> logistic_res_dict[y_type]
+</span></span><span style="display:flex;"><span>    save_res[<span style="color:#e6db74">&#39;weights&#39;</span>] <span style="color:#f92672">=</span> perceptron<span style="color:#f92672">.</span>weights
+</span></span><span style="display:flex;"><span>    save_res[<span style="color:#e6db74">&#39;bias&#39;</span>] <span style="color:#f92672">=</span> perceptron<span style="color:#f92672">.</span>bias
+</span></span><span style="display:flex;"><span>    save_res[<span style="color:#e6db74">&#39;y_hat&#39;</span>] <span style="color:#f92672">=</span> predictions
+</span></span><span style="display:flex;"><span>    save_res[<span style="color:#e6db74">&#39;y&#39;</span>] <span style="color:#f92672">=</span> y
+</span></span><span style="display:flex;"><span>    save_res[<span style="color:#e6db74">&#39;X&#39;</span>] <span style="color:#f92672">=</span> X
+</span></span></code></pre></div><h4 id="打印结果并可视化演示">打印结果并可视化演示<a hidden class="anchor" aria-hidden="true" href="#打印结果并可视化演示">#</a></h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">for</span> y_type, results <span style="color:#f92672">in</span> logistic_res_dict<span style="color:#f92672">.</span>items():  
+</span></span><span style="display:flex;"><span>    print(y_type)  
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">{</span><span style="color:#e6db74">&#39;y:&#39;</span><span style="color:#e6db74">:</span><span style="color:#e6db74">10</span><span style="color:#e6db74">}{</span>results[<span style="color:#e6db74">&#39;y&#39;</span>]<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)  
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">{</span><span style="color:#e6db74">&#39;y_hat:&#39;</span><span style="color:#e6db74">:</span><span style="color:#e6db74">10</span><span style="color:#e6db74">}{</span>results[<span style="color:#e6db74">&#39;y_hat&#39;</span>]<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)   
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">{</span><span style="color:#e6db74">&#39;weights:&#39;</span><span style="color:#e6db74">:</span><span style="color:#e6db74">10</span><span style="color:#e6db74">}{</span>results[<span style="color:#e6db74">&#39;weights&#39;</span>]<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)  
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">{</span><span style="color:#e6db74">&#39;bias:&#39;</span><span style="color:#e6db74">:</span><span style="color:#e6db74">10</span><span style="color:#e6db74">}{</span>results[<span style="color:#e6db74">&#39;bias&#39;</span>]<span style="color:#e6db74">:</span><span style="color:#e6db74"> .2f</span><span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)  
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#34;=&#34;</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">40</span>)  <span style="color:#75715e"># 分隔线  </span>
+</span></span><span style="display:flex;"><span>x <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>arange(<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">0.1</span>)  
+</span></span><span style="display:flex;"><span>fig, axes <span style="color:#f92672">=</span> plt<span style="color:#f92672">.</span>subplots(nrows<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>, ncols<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>, figsize<span style="color:#f92672">=</span>(<span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">10</span>))
+</span></span><span style="display:flex;"><span>axes <span style="color:#f92672">=</span> axes<span style="color:#f92672">.</span>flatten()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> ax, (k, v) <span style="color:#f92672">in</span> zip(axes, res_dict<span style="color:#f92672">.</span>items()):
+</span></span><span style="display:flex;"><span>    ax: plt<span style="color:#f92672">.</span>Axes
+</span></span><span style="display:flex;"><span>    y_line <span style="color:#f92672">=</span> (<span style="color:#f92672">-</span> v[<span style="color:#e6db74">&#39;weights&#39;</span>][<span style="color:#ae81ff">0</span>] <span style="color:#f92672">/</span> (v[<span style="color:#e6db74">&#39;weights&#39;</span>][<span style="color:#ae81ff">1</span>] <span style="color:#f92672">+</span> <span style="color:#ae81ff">1e-10</span>)) <span style="color:#f92672">*</span> x <span style="color:#f92672">-</span>  v[<span style="color:#e6db74">&#39;bias&#39;</span>] <span style="color:#f92672">/</span> (v[<span style="color:#e6db74">&#39;weights&#39;</span>][<span style="color:#ae81ff">1</span>] <span style="color:#f92672">+</span> <span style="color:#ae81ff">1e-10</span>)   <span style="color:#75715e"># 1e-10 防止分母为0</span>
+</span></span><span style="display:flex;"><span>    ax<span style="color:#f92672">.</span>scatter(<span style="color:#f92672">*</span>v[<span style="color:#e6db74">&#39;X&#39;</span>][v[<span style="color:#e6db74">&#39;y&#39;</span>] <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>]<span style="color:#f92672">.</span>T, marker<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;o&#39;</span>, c<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;green&#39;</span>, s<span style="color:#f92672">=</span><span style="color:#ae81ff">100</span>)
+</span></span><span style="display:flex;"><span>    ax<span style="color:#f92672">.</span>scatter(<span style="color:#f92672">*</span>v[<span style="color:#e6db74">&#39;X&#39;</span>][v[<span style="color:#e6db74">&#39;y&#39;</span>] <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>T, marker<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;x&#39;</span>, c<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;red&#39;</span>, s<span style="color:#f92672">=</span><span style="color:#ae81ff">100</span>)
+</span></span><span style="display:flex;"><span>    ax<span style="color:#f92672">.</span>plot(x, y_line)
+</span></span><span style="display:flex;"><span>    ax<span style="color:#f92672">.</span>set_title(k)
+</span></span><span style="display:flex;"><span>    ax<span style="color:#f92672">.</span>set_xlabel(<span style="color:#e6db74">&#39;x&#39;</span>)  
+</span></span><span style="display:flex;"><span>    ax<span style="color:#f92672">.</span>set_ylabel(<span style="color:#e6db74">&#39;y&#39;</span>)  
+</span></span><span style="display:flex;"><span>    ax<span style="color:#f92672">.</span>set_xlim(<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>)  <span style="color:#75715e"># 设置 x 轴范围  </span>
+</span></span><span style="display:flex;"><span>    ax<span style="color:#f92672">.</span>set_ylim(<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>)  
+</span></span><span style="display:flex;"><span>    ax<span style="color:#f92672">.</span>grid(<span style="color:#66d9ef">True</span>)  
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>show()  
+</span></span></code></pre></div><pre><code>AND
+y:        [0 0 0 1]
+y_hat:    [0, 0, 0, 1]
+weights:  [-0.1  0. ]
+bias:      0.00
+========================================
+NAND
+y:        [1 1 1 0]
+y_hat:    [1, 1, 1, 0]
+weights:  [-0.1  0. ]
+bias:      0.00
+========================================
+OR
+y:        [0 1 1 1]
+y_hat:    [0, 1, 1, 1]
+weights:  [-0.1  0. ]
+bias:      0.00
+========================================
+XOR
+y:        [0 1 1 0]
+y_hat:    [0, 0, 0, 0]
+weights:  [-0.1  0. ]
+bias:      0.00
+========================================
+</code></pre>
+<p><img loading="lazy" src="output_29_1.png" alt="png"  />
+</p>
+<p>   显然, 同样的结果。</p>
+<h2 id="总结">总结<a hidden class="anchor" aria-hidden="true" href="#总结">#</a></h2>
+<p>  相信很多朋友发现, 感知机模型和逻辑斯蒂回归这两者在结构上挺像的，都可以看作是单个神经元的模型，但它们使用了不同的激活函数。</p>
+<p>  首先，感知机一般使用阶跃函数，这种函数的特点是，当输入大于某个值时，输出就是1；否则就是0。而逻辑斯蒂回归则使用的是sigmoid函数，它把输出压缩到0到1之间，非常适合做概率预测。</p>
+<p>  在损失函数方面, 感知机采用的是铰链损失，这种损失关注的是分类错误的样本。而逻辑斯蒂回归使用的是对数损失。这种损失的目标是最大化似然函数，换句话说，就是让模型尽量准确地预测出每个样本的概率。</p>
+<p>  在优化方面，感知机有自己的一套学习算法，它通过不断的迭代来更新权重，直到所有训练样本都被正确分类，或者满足了某些迭代条件。而逻辑斯蒂回归通常会采用梯度下降法或者拟牛顿法这样的优化方法，反复调整权重，力求找到最好的参数组合，最小化损失函数。</p>
+<p>   感知机模型和逻辑斯蒂回归通常解决的是二分类问题, 那么对于多分类问题呢? 通常我们采用的是逻辑斯蒂回归的扩展版: SoftMax回归, 它采用了单层的多个神经元, 并加入了softmax层将每个神经元最后的输出转化为对应每个分类的概率。下期将为大家来从零实现这个softmax回归。</p>
+
+
+  </div>
+
+  
+
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="https://Rookie-AI.github.io/">Rookie AI</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

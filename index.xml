@@ -85,13 +85,6 @@ $$&lt;/p&gt;
     </item>
     <item>
       <title></title>
-      <link>https://Rookie-AI.github.io/dl/%E7%9B%B8%E5%85%B3%E8%B5%84%E6%BA%90/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://Rookie-AI.github.io/dl/%E7%9B%B8%E5%85%B3%E8%B5%84%E6%BA%90/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title></title>
       <link>https://Rookie-AI.github.io/notebook/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://Rookie-AI.github.io/notebook/</guid>
@@ -100,11 +93,75 @@ $$&lt;/p&gt;
 &lt;h2 id=&#34;-时间序列分析time-series&#34;&gt;🌟 &lt;a href=&#34;https://Rookie-AI.github.io/time-series/&#34;&gt;时间序列分析&lt;/a&gt;&lt;/h2&gt;</description>
     </item>
     <item>
+      <title></title>
+      <link>https://Rookie-AI.github.io/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/01.%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0%E7%BA%BF%E6%80%A7%E7%A5%9E%E7%BB%8F%E5%85%83%E4%BA%8C%E5%88%86%E7%B1%BB%E5%99%A8/01.%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0%E7%BA%BF%E6%80%A7%E7%A5%9E%E7%BB%8F%E5%85%83%E4%BA%8C%E5%88%86%E7%B1%BB%E5%99%A8/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://Rookie-AI.github.io/%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/01.%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0%E7%BA%BF%E6%80%A7%E7%A5%9E%E7%BB%8F%E5%85%83%E4%BA%8C%E5%88%86%E7%B1%BB%E5%99%A8/01.%E4%BB%8E%E9%9B%B6%E5%AE%9E%E7%8E%B0%E7%BA%BF%E6%80%A7%E7%A5%9E%E7%BB%8F%E5%85%83%E4%BA%8C%E5%88%86%E7%B1%BB%E5%99%A8/</guid>
+      <description>&lt;h1 id=&#34;从零实现线性神经网络二分类器&#34;&gt;从零实现线性神经网络二分类器&lt;/h1&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; numpy &lt;span style=&#34;color:#66d9ef&#34;&gt;as&lt;/span&gt; np  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;from&lt;/span&gt; collections &lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; defaultdict
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; matplotlib.pyplot &lt;span style=&#34;color:#66d9ef&#34;&gt;as&lt;/span&gt; plt
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;  本文主要旨在从零对算法进行实现，因此对算法原理的阐述将保持简洁。接下来，我们将概述感知机和逻辑斯蒂回归（Logistic Regression）的基本原理，并提供从零实现这两种算法的示例。此外，我们还将通过启发式方法探讨它们在实际应用中的局限性。&lt;/p&gt;
+&lt;h2 id=&#34;感知机&#34;&gt;感知机&lt;/h2&gt;
+&lt;h3 id=&#34;算法原理&#34;&gt;算法原理&lt;/h3&gt;
+&lt;p&gt;感知机（Perceptron）是一种基础的线性分类模型，最早由弗兰克·罗森布拉特 (Frank Rosenblatt) 在1958年提出。其主要原理如下：&lt;/p&gt;
+&lt;h4 id=&#34;1-模型结构&#34;&gt;1. 模型结构&lt;/h4&gt;
+&lt;p&gt;感知机由输入节点、权重、偏置和激活函数组成：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;输入节点&lt;/strong&gt;：接收输入特征的值。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;权重&lt;/strong&gt;：每个输入特征都有一个对应的权重，用于衡量特征的重要性。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;偏置&lt;/strong&gt;：一个常数项，使模型能够更灵活地拟合数据。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;激活函数&lt;/strong&gt;：通常是阶跃函数，将加权和转换为输出（0或1）。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;2-工作流程&#34;&gt;2. 工作流程&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;加权求和&lt;/strong&gt;：计算输入特征与对应权重的加权和：&lt;br&gt;
+$$
+z = \sum_{i=1}^{n} w_i x_i + b&lt;br&gt;
+$$
+其中，$ w_i $ 是权重，$ x_i $ 是输入特征，$ b $ 是偏置。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;应用激活函数&lt;/strong&gt;：将加权和 (z) 输入到激活函数中，决定输出类别：&lt;br&gt;
+$$
+y = f(z)&lt;br&gt;
+$$
+典型的激活函数为阶跃函数：&lt;br&gt;
+$$
+f(z) =&lt;br&gt;
+\begin{cases}&lt;br&gt;
+1 &amp;amp; \text{if } z \geq 0 \&lt;br&gt;
+0 &amp;amp; \text{if } z &amp;lt; 0&lt;br&gt;
+\end{cases}&lt;br&gt;
+$$&lt;/p&gt;</description>
+    </item>
+    <item>
       <title>Kaggle 竞赛</title>
       <link>https://Rookie-AI.github.io/works/kaggle/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://Rookie-AI.github.io/works/kaggle/</guid>
-      <description>&lt;h1 id=&#34;kaggle-科学计算竞赛&#34;&gt;kaggle 科学计算竞赛&lt;/h1&gt;</description>
+      <description>&lt;h1 id=&#34;kaggle-科学计算竞赛&#34;&gt;kaggle 科学计算竞赛&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.kaggle.com&#34;&gt;Kaggle&lt;/a&gt; - 一个数据科学竞赛平台，提供丰富的数据集和竞赛机会&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.kaggle.com/rookiejcy&#34;&gt;我的个人作品集&lt;/a&gt; - 查看我的数据科学项目和竞赛成果
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://your-portfolio-link.com/project1&#34;&gt;项目一&lt;/a&gt; - 这是我在Kaggle上参与的第一个项目，主要涉及数据清洗和可视化。&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://your-portfolio-link.com/project2&#34;&gt;项目二&lt;/a&gt; - 这个项目专注于机器学习模型的构建和优化，取得了不错的成绩。&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://your-portfolio-link.com/project3&#34;&gt;项目三&lt;/a&gt; - 在这个项目中，我使用深度学习技术解决了一个复杂的问题。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;heading&#34;&gt;&lt;/h1&gt;</description>
+    </item>
+    <item>
+      <title>大模型应用</title>
+      <link>https://Rookie-AI.github.io/works/genai/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://Rookie-AI.github.io/works/genai/</guid>
+      <description>&lt;h2 id=&#34;大模型应用&#34;&gt;大模型应用&lt;/h2&gt;
+&lt;h3 id=&#34;作品1-智能分析系统&#34;&gt;作品1: 智能分析系统&lt;/h3&gt;
+&lt;p&gt;该系统旨在提升电力供应客户服务对话的效率和质量。利用大模型技术，系统能够自动分析客户的需求和问题，并提供相应的解决方案。更多信息请访问 &lt;a href=&#34;https://github.com/ROOKIE-AI/Intelligent-Analysis-System-for-Power-Supply-Customer-Service-Conversations&#34;&gt;项目链接&lt;/a&gt;。&lt;/p&gt;</description>
     </item>
     <item>
       <title>深度学习</title>
