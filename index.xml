@@ -160,8 +160,102 @@ $$&lt;/p&gt;</description>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://Rookie-AI.github.io/works/genai/</guid>
       <description>&lt;h2 id=&#34;大模型应用&#34;&gt;大模型应用&lt;/h2&gt;
-&lt;h3 id=&#34;作品1-智能分析系统&#34;&gt;作品1: 智能分析系统&lt;/h3&gt;
-&lt;p&gt;该系统旨在提升电力供应客户服务对话的效率和质量。利用大模型技术，系统能够自动分析客户的需求和问题，并提供相应的解决方案。更多信息请访问 &lt;a href=&#34;https://github.com/ROOKIE-AI/Intelligent-Analysis-System-for-Power-Supply-Customer-Service-Conversations&#34;&gt;项目链接&lt;/a&gt;。&lt;/p&gt;</description>
+&lt;h3 id=&#34;供电服务智能问答系统&#34;&gt;供电服务智能问答系统&lt;/h3&gt;
+&lt;p&gt;该系统是一个基于大语言模型的智能客服解决方案，专为电力行业设计。通过处理客户音频通话记录，系统提供智能分析和专业解答。主要功能包括：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;语音识别&lt;/strong&gt;：支持多种音频格式转文字&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;智能分析&lt;/strong&gt;：自动提取通话关键信息（受理时间、联系人、地址、内容、跟进事项）&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;专业问答&lt;/strong&gt;：基于供电营业规则知识库提供解答&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;结构化输出&lt;/strong&gt;：清晰展示分析结果和解决方案&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;技术上，系统集成了Streamlit、LangChain、FAISS向量数据库和Whisper语音识别，通过OpenAI API提供强大的语言理解能力。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://master-qtqkunyeoqrl22xzuyxayp.streamlit.app/&#34;&gt;在线演示&lt;/a&gt; | &lt;a href=&#34;https://github.com/ROOKIE-AI/Intelligent-Analysis-System-for-Power-Supply-Customer-Service-Conversations&#34;&gt;项目代码&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;会议准备ai助手&#34;&gt;会议准备AI助手&lt;/h3&gt;
+&lt;p&gt;该系统是一个智能会议准备工具，通过多个AI助手协同工作，为用户生成全面的会议准备材料。主要特点包括：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;多AI助手协同系统&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;背景分析专家：深入研究公司信息&lt;/li&gt;
+&lt;li&gt;行业专家：分析市场趋势&lt;/li&gt;
+&lt;li&gt;策略专家：制定会议策略&lt;/li&gt;
+&lt;li&gt;沟通专家：整合信息输出&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;多文档处理能力&lt;/strong&gt;：支持Word、PDF、PPT、Excel等多种文档格式&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;智能分析输出&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;会议背景分析&lt;/li&gt;
+&lt;li&gt;行业趋势洞察&lt;/li&gt;
+&lt;li&gt;定制化会议策略&lt;/li&gt;
+&lt;li&gt;详细执行简报&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;技术上，系统基于Streamlit开发，集成了OpenAI的GPT模型和维基百科搜索功能，提供实时分析进度展示和详细日志记录。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://9yskzputwjappacugobfxwo.streamlit.app/&#34;&gt;在线演示&lt;/a&gt; | &lt;a href=&#34;https://github.com/ROOKIE-AI/ai_meeting_agent&#34;&gt;项目代码&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>时间序列预测项目</title>
+      <link>https://Rookie-AI.github.io/works/timeseries/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://Rookie-AI.github.io/works/timeseries/</guid>
+      <description>&lt;h2 id=&#34;时间序列预测项目&#34;&gt;时间序列预测项目&lt;/h2&gt;
+&lt;h3 id=&#34;windcast-风力发电预测系统&#34;&gt;WindCast: 风力发电预测系统&lt;/h3&gt;
+&lt;p&gt;该项目基于龙源电力集团提供的SDWPF（Sustainable Development Wind Power Forecasting）数据集，构建了一个风力发电预测系统。系统利用机器学习方法，通过分析风速、温度等多个特征，对风力涡轮机的发电量进行精确预测。&lt;/p&gt;
+&lt;h4 id=&#34;主要功能&#34;&gt;主要功能&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;数据预处理与清洗&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;异常值检测与处理&lt;/li&gt;
+&lt;li&gt;缺失值填补&lt;/li&gt;
+&lt;li&gt;数据标准化&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;特征工程&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;角度特征转换（正弦/余弦编码）&lt;/li&gt;
+&lt;li&gt;时间特征编码&lt;/li&gt;
+&lt;li&gt;温度数据修正&lt;/li&gt;
+&lt;li&gt;冗余特征删除&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;预测模型&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;线性回归模型（单变量/多变量）&lt;/li&gt;
+&lt;li&gt;神经网络模型(MLP、Conv-LSTM)&lt;/li&gt;
+&lt;li&gt;特征重要性分析&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;关键特征&#34;&gt;关键特征&lt;/h4&gt;
+&lt;p&gt;系统分析的主要特征包括：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;风速(Wspd)&lt;/li&gt;
+&lt;li&gt;风向(Wdir)&lt;/li&gt;
+&lt;li&gt;环境温度(Etmp)&lt;/li&gt;
+&lt;li&gt;内部温度(Itmp)&lt;/li&gt;
+&lt;li&gt;机舱方向(Ndir)&lt;/li&gt;
+&lt;li&gt;叶片角度(Pab)&lt;/li&gt;
+&lt;li&gt;相对功率(Prtv)&lt;/li&gt;
+&lt;li&gt;有功功率(Patv)：预测目标&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;技术栈&#34;&gt;技术栈&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;pandas、numpy：数据处理&lt;/li&gt;
+&lt;li&gt;matplotlib、seaborn：数据可视化&lt;/li&gt;
+&lt;li&gt;scikit-learn：机器学习模型&lt;/li&gt;
+&lt;li&gt;PyTorch：深度学习模型&lt;/li&gt;
+&lt;li&gt;SHAP：模型解释性分析&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;项目采用平均绝对误差(MAE)作为评估指标，提供预测值与实际值的可视化对比及特征重要性分析，使结果更加直观可解释。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/ROOKIE-AI/WindCast&#34;&gt;项目代码&lt;/a&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>深度学习</title>

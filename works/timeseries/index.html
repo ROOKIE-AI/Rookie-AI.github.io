@@ -5,48 +5,63 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
-<title>大模型应用 | Rookie AI</title>
+<title>时间序列预测项目 | Rookie AI</title>
 <meta name="keywords" content="">
-<meta name="description" content="大模型应用
-供电服务智能问答系统
-该系统是一个基于大语言模型的智能客服解决方案，专为电力行业设计。通过处理客户音频通话记录，系统提供智能分析和专业解答。主要功能包括：
-
-语音识别：支持多种音频格式转文字
-智能分析：自动提取通话关键信息（受理时间、联系人、地址、内容、跟进事项）
-专业问答：基于供电营业规则知识库提供解答
-结构化输出：清晰展示分析结果和解决方案
-
-技术上，系统集成了Streamlit、LangChain、FAISS向量数据库和Whisper语音识别，通过OpenAI API提供强大的语言理解能力。
-在线演示 | 项目代码
-会议准备AI助手
-该系统是一个智能会议准备工具，通过多个AI助手协同工作，为用户生成全面的会议准备材料。主要特点包括：
+<meta name="description" content="时间序列预测项目
+WindCast: 风力发电预测系统
+该项目基于龙源电力集团提供的SDWPF（Sustainable Development Wind Power Forecasting）数据集，构建了一个风力发电预测系统。系统利用机器学习方法，通过分析风速、温度等多个特征，对风力涡轮机的发电量进行精确预测。
+主要功能
 
 
-多AI助手协同系统：
+数据预处理与清洗
 
-背景分析专家：深入研究公司信息
-行业专家：分析市场趋势
-策略专家：制定会议策略
-沟通专家：整合信息输出
+异常值检测与处理
+缺失值填补
+数据标准化
 
 
 
-多文档处理能力：支持Word、PDF、PPT、Excel等多种文档格式
+特征工程
 
-
-智能分析输出：
-
-会议背景分析
-行业趋势洞察
-定制化会议策略
-详细执行简报
+角度特征转换（正弦/余弦编码）
+时间特征编码
+温度数据修正
+冗余特征删除
 
 
 
-技术上，系统基于Streamlit开发，集成了OpenAI的GPT模型和维基百科搜索功能，提供实时分析进度展示和详细日志记录。
-在线演示 | 项目代码">
+预测模型
+
+线性回归模型（单变量/多变量）
+神经网络模型(MLP、Conv-LSTM)
+特征重要性分析
+
+
+
+关键特征
+系统分析的主要特征包括：
+
+风速(Wspd)
+风向(Wdir)
+环境温度(Etmp)
+内部温度(Itmp)
+机舱方向(Ndir)
+叶片角度(Pab)
+相对功率(Prtv)
+有功功率(Patv)：预测目标
+
+技术栈
+
+pandas、numpy：数据处理
+matplotlib、seaborn：数据可视化
+scikit-learn：机器学习模型
+PyTorch：深度学习模型
+SHAP：模型解释性分析
+
+项目采用平均绝对误差(MAE)作为评估指标，提供预测值与实际值的可视化对比及特征重要性分析，使结果更加直观可解释。
+项目代码">
 <meta name="author" content="Rookie AI">
-<link rel="canonical" href="https://Rookie-AI.github.io/works/genai/">
+<link rel="canonical" href="https://Rookie-AI.github.io/works/timeseries/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.fc220c15db4aef0318bbf30adc45d33d4d7c88deff3238b23eb255afdc472ca6.css" integrity="sha256-/CIMFdtK7wMYu/MK3EXTPU18iN7/MjiyPrJVr9xHLKY=" rel="preload stylesheet" as="style">
 <link rel="icon" href="https://Rookie-AI.github.io/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="https://Rookie-AI.github.io/favicon-16x16.png">
@@ -55,7 +70,7 @@
 <link rel="mask-icon" href="https://Rookie-AI.github.io/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="https://Rookie-AI.github.io/works/genai/">
+<link rel="alternate" hreflang="en" href="https://Rookie-AI.github.io/works/timeseries/">
 <noscript>
     <style>
         #theme-toggle,
@@ -106,90 +121,120 @@
           gtag('js', new Date());
           gtag('config', 'G-XXXXXXXXXX');
         }
-      </script><meta property="og:title" content="大模型应用" />
-<meta property="og:description" content="大模型应用
-供电服务智能问答系统
-该系统是一个基于大语言模型的智能客服解决方案，专为电力行业设计。通过处理客户音频通话记录，系统提供智能分析和专业解答。主要功能包括：
-
-语音识别：支持多种音频格式转文字
-智能分析：自动提取通话关键信息（受理时间、联系人、地址、内容、跟进事项）
-专业问答：基于供电营业规则知识库提供解答
-结构化输出：清晰展示分析结果和解决方案
-
-技术上，系统集成了Streamlit、LangChain、FAISS向量数据库和Whisper语音识别，通过OpenAI API提供强大的语言理解能力。
-在线演示 | 项目代码
-会议准备AI助手
-该系统是一个智能会议准备工具，通过多个AI助手协同工作，为用户生成全面的会议准备材料。主要特点包括：
+      </script><meta property="og:title" content="时间序列预测项目" />
+<meta property="og:description" content="时间序列预测项目
+WindCast: 风力发电预测系统
+该项目基于龙源电力集团提供的SDWPF（Sustainable Development Wind Power Forecasting）数据集，构建了一个风力发电预测系统。系统利用机器学习方法，通过分析风速、温度等多个特征，对风力涡轮机的发电量进行精确预测。
+主要功能
 
 
-多AI助手协同系统：
+数据预处理与清洗
 
-背景分析专家：深入研究公司信息
-行业专家：分析市场趋势
-策略专家：制定会议策略
-沟通专家：整合信息输出
+异常值检测与处理
+缺失值填补
+数据标准化
 
 
 
-多文档处理能力：支持Word、PDF、PPT、Excel等多种文档格式
+特征工程
 
-
-智能分析输出：
-
-会议背景分析
-行业趋势洞察
-定制化会议策略
-详细执行简报
+角度特征转换（正弦/余弦编码）
+时间特征编码
+温度数据修正
+冗余特征删除
 
 
 
-技术上，系统基于Streamlit开发，集成了OpenAI的GPT模型和维基百科搜索功能，提供实时分析进度展示和详细日志记录。
-在线演示 | 项目代码" />
+预测模型
+
+线性回归模型（单变量/多变量）
+神经网络模型(MLP、Conv-LSTM)
+特征重要性分析
+
+
+
+关键特征
+系统分析的主要特征包括：
+
+风速(Wspd)
+风向(Wdir)
+环境温度(Etmp)
+内部温度(Itmp)
+机舱方向(Ndir)
+叶片角度(Pab)
+相对功率(Prtv)
+有功功率(Patv)：预测目标
+
+技术栈
+
+pandas、numpy：数据处理
+matplotlib、seaborn：数据可视化
+scikit-learn：机器学习模型
+PyTorch：深度学习模型
+SHAP：模型解释性分析
+
+项目采用平均绝对误差(MAE)作为评估指标，提供预测值与实际值的可视化对比及特征重要性分析，使结果更加直观可解释。
+项目代码" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://Rookie-AI.github.io/works/genai/" /><meta property="article:section" content="works" />
+<meta property="og:url" content="https://Rookie-AI.github.io/works/timeseries/" /><meta property="article:section" content="works" />
 
 
 
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="大模型应用"/>
-<meta name="twitter:description" content="大模型应用
-供电服务智能问答系统
-该系统是一个基于大语言模型的智能客服解决方案，专为电力行业设计。通过处理客户音频通话记录，系统提供智能分析和专业解答。主要功能包括：
-
-语音识别：支持多种音频格式转文字
-智能分析：自动提取通话关键信息（受理时间、联系人、地址、内容、跟进事项）
-专业问答：基于供电营业规则知识库提供解答
-结构化输出：清晰展示分析结果和解决方案
-
-技术上，系统集成了Streamlit、LangChain、FAISS向量数据库和Whisper语音识别，通过OpenAI API提供强大的语言理解能力。
-在线演示 | 项目代码
-会议准备AI助手
-该系统是一个智能会议准备工具，通过多个AI助手协同工作，为用户生成全面的会议准备材料。主要特点包括：
+<meta name="twitter:title" content="时间序列预测项目"/>
+<meta name="twitter:description" content="时间序列预测项目
+WindCast: 风力发电预测系统
+该项目基于龙源电力集团提供的SDWPF（Sustainable Development Wind Power Forecasting）数据集，构建了一个风力发电预测系统。系统利用机器学习方法，通过分析风速、温度等多个特征，对风力涡轮机的发电量进行精确预测。
+主要功能
 
 
-多AI助手协同系统：
+数据预处理与清洗
 
-背景分析专家：深入研究公司信息
-行业专家：分析市场趋势
-策略专家：制定会议策略
-沟通专家：整合信息输出
+异常值检测与处理
+缺失值填补
+数据标准化
 
 
 
-多文档处理能力：支持Word、PDF、PPT、Excel等多种文档格式
+特征工程
 
-
-智能分析输出：
-
-会议背景分析
-行业趋势洞察
-定制化会议策略
-详细执行简报
+角度特征转换（正弦/余弦编码）
+时间特征编码
+温度数据修正
+冗余特征删除
 
 
 
-技术上，系统基于Streamlit开发，集成了OpenAI的GPT模型和维基百科搜索功能，提供实时分析进度展示和详细日志记录。
-在线演示 | 项目代码"/>
+预测模型
+
+线性回归模型（单变量/多变量）
+神经网络模型(MLP、Conv-LSTM)
+特征重要性分析
+
+
+
+关键特征
+系统分析的主要特征包括：
+
+风速(Wspd)
+风向(Wdir)
+环境温度(Etmp)
+内部温度(Itmp)
+机舱方向(Ndir)
+叶片角度(Pab)
+相对功率(Prtv)
+有功功率(Patv)：预测目标
+
+技术栈
+
+pandas、numpy：数据处理
+matplotlib、seaborn：数据可视化
+scikit-learn：机器学习模型
+PyTorch：深度学习模型
+SHAP：模型解释性分析
+
+项目采用平均绝对误差(MAE)作为评估指标，提供预测值与实际值的可视化对比及特征重要性分析，使结果更加直观可解释。
+项目代码"/>
 
 
 <script type="application/ld+json">
@@ -206,8 +251,8 @@
     {
       "@type": "ListItem",
       "position":  2 ,
-      "name": "大模型应用",
-      "item": "https://Rookie-AI.github.io/works/genai/"
+      "name": "时间序列预测项目",
+      "item": "https://Rookie-AI.github.io/works/timeseries/"
     }
   ]
 }
@@ -216,14 +261,14 @@
 {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
-  "headline": "大模型应用",
-  "name": "大模型应用",
-  "description": "大模型应用 供电服务智能问答系统 该系统是一个基于大语言模型的智能客服解决方案，专为电力行业设计。通过处理客户音频通话记录，系统提供智能分析和专业解答。主要功能包括：\n语音识别：支持多种音频格式转文字 智能分析：自动提取通话关键信息（受理时间、联系人、地址、内容、跟进事项） 专业问答：基于供电营业规则知识库提供解答 结构化输出：清晰展示分析结果和解决方案 技术上，系统集成了Streamlit、LangChain、FAISS向量数据库和Whisper语音识别，通过OpenAI API提供强大的语言理解能力。\n在线演示 | 项目代码\n会议准备AI助手 该系统是一个智能会议准备工具，通过多个AI助手协同工作，为用户生成全面的会议准备材料。主要特点包括：\n多AI助手协同系统：\n背景分析专家：深入研究公司信息 行业专家：分析市场趋势 策略专家：制定会议策略 沟通专家：整合信息输出 多文档处理能力：支持Word、PDF、PPT、Excel等多种文档格式\n智能分析输出：\n会议背景分析 行业趋势洞察 定制化会议策略 详细执行简报 技术上，系统基于Streamlit开发，集成了OpenAI的GPT模型和维基百科搜索功能，提供实时分析进度展示和详细日志记录。\n在线演示 | 项目代码\n",
+  "headline": "时间序列预测项目",
+  "name": "时间序列预测项目",
+  "description": "时间序列预测项目 WindCast: 风力发电预测系统 该项目基于龙源电力集团提供的SDWPF（Sustainable Development Wind Power Forecasting）数据集，构建了一个风力发电预测系统。系统利用机器学习方法，通过分析风速、温度等多个特征，对风力涡轮机的发电量进行精确预测。\n主要功能 数据预处理与清洗\n异常值检测与处理 缺失值填补 数据标准化 特征工程\n角度特征转换（正弦/余弦编码） 时间特征编码 温度数据修正 冗余特征删除 预测模型\n线性回归模型（单变量/多变量） 神经网络模型(MLP、Conv-LSTM) 特征重要性分析 关键特征 系统分析的主要特征包括：\n风速(Wspd) 风向(Wdir) 环境温度(Etmp) 内部温度(Itmp) 机舱方向(Ndir) 叶片角度(Pab) 相对功率(Prtv) 有功功率(Patv)：预测目标 技术栈 pandas、numpy：数据处理 matplotlib、seaborn：数据可视化 scikit-learn：机器学习模型 PyTorch：深度学习模型 SHAP：模型解释性分析 项目采用平均绝对误差(MAE)作为评估指标，提供预测值与实际值的可视化对比及特征重要性分析，使结果更加直观可解释。\n项目代码\n",
   "keywords": [
     
   ],
-  "articleBody": "大模型应用 供电服务智能问答系统 该系统是一个基于大语言模型的智能客服解决方案，专为电力行业设计。通过处理客户音频通话记录，系统提供智能分析和专业解答。主要功能包括：\n语音识别：支持多种音频格式转文字 智能分析：自动提取通话关键信息（受理时间、联系人、地址、内容、跟进事项） 专业问答：基于供电营业规则知识库提供解答 结构化输出：清晰展示分析结果和解决方案 技术上，系统集成了Streamlit、LangChain、FAISS向量数据库和Whisper语音识别，通过OpenAI API提供强大的语言理解能力。\n在线演示 | 项目代码\n会议准备AI助手 该系统是一个智能会议准备工具，通过多个AI助手协同工作，为用户生成全面的会议准备材料。主要特点包括：\n多AI助手协同系统：\n背景分析专家：深入研究公司信息 行业专家：分析市场趋势 策略专家：制定会议策略 沟通专家：整合信息输出 多文档处理能力：支持Word、PDF、PPT、Excel等多种文档格式\n智能分析输出：\n会议背景分析 行业趋势洞察 定制化会议策略 详细执行简报 技术上，系统基于Streamlit开发，集成了OpenAI的GPT模型和维基百科搜索功能，提供实时分析进度展示和详细日志记录。\n在线演示 | 项目代码\n",
-  "wordCount" : "29",
+  "articleBody": "时间序列预测项目 WindCast: 风力发电预测系统 该项目基于龙源电力集团提供的SDWPF（Sustainable Development Wind Power Forecasting）数据集，构建了一个风力发电预测系统。系统利用机器学习方法，通过分析风速、温度等多个特征，对风力涡轮机的发电量进行精确预测。\n主要功能 数据预处理与清洗\n异常值检测与处理 缺失值填补 数据标准化 特征工程\n角度特征转换（正弦/余弦编码） 时间特征编码 温度数据修正 冗余特征删除 预测模型\n线性回归模型（单变量/多变量） 神经网络模型(MLP、Conv-LSTM) 特征重要性分析 关键特征 系统分析的主要特征包括：\n风速(Wspd) 风向(Wdir) 环境温度(Etmp) 内部温度(Itmp) 机舱方向(Ndir) 叶片角度(Pab) 相对功率(Prtv) 有功功率(Patv)：预测目标 技术栈 pandas、numpy：数据处理 matplotlib、seaborn：数据可视化 scikit-learn：机器学习模型 PyTorch：深度学习模型 SHAP：模型解释性分析 项目采用平均绝对误差(MAE)作为评估指标，提供预测值与实际值的可视化对比及特征重要性分析，使结果更加直观可解释。\n项目代码\n",
+  "wordCount" : "40",
   "inLanguage": "en",
   "datePublished": "0001-01-01T00:00:00Z",
   "dateModified": "0001-01-01T00:00:00Z",
@@ -233,7 +278,7 @@
   },
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "https://Rookie-AI.github.io/works/genai/"
+    "@id": "https://Rookie-AI.github.io/works/timeseries/"
   },
   "publisher": {
     "@type": "Organization",
@@ -327,9 +372,9 @@
   <header class="post-header">
     <div class="breadcrumbs"><a href="https://Rookie-AI.github.io/">Home</a>&nbsp;»&nbsp;<a href="https://Rookie-AI.github.io/works/">Works</a></div>
     <h1 class="post-title entry-hint-parent">
-      大模型应用
+      时间序列预测项目
     </h1>
-    <div class="post-meta">1 min&nbsp;·&nbsp;Rookie AI&nbsp;|&nbsp;<a href="https://github.com/ROOKIE-AI/Rookie-AI.github.io/works/GenAI.md" rel="noopener noreferrer" target="_blank">Rookie.AI</a>
+    <div class="post-meta">1 min&nbsp;·&nbsp;Rookie AI&nbsp;|&nbsp;<a href="https://github.com/ROOKIE-AI/Rookie-AI.github.io/works/TimeSeries.md" rel="noopener noreferrer" target="_blank">Rookie.AI</a>
 
 </div>
   </header> <div class="toc">
@@ -340,13 +385,20 @@
 
         <div class="inner"><ul>
                 <li>
-                    <a href="#%e5%a4%a7%e6%a8%a1%e5%9e%8b%e5%ba%94%e7%94%a8" aria-label="大模型应用">大模型应用</a><ul>
+                    <a href="#%e6%97%b6%e9%97%b4%e5%ba%8f%e5%88%97%e9%a2%84%e6%b5%8b%e9%a1%b9%e7%9b%ae" aria-label="时间序列预测项目">时间序列预测项目</a><ul>
                         
                 <li>
-                    <a href="#%e4%be%9b%e7%94%b5%e6%9c%8d%e5%8a%a1%e6%99%ba%e8%83%bd%e9%97%ae%e7%ad%94%e7%b3%bb%e7%bb%9f" aria-label="供电服务智能问答系统">供电服务智能问答系统</a></li>
+                    <a href="#windcast-%e9%a3%8e%e5%8a%9b%e5%8f%91%e7%94%b5%e9%a2%84%e6%b5%8b%e7%b3%bb%e7%bb%9f" aria-label="WindCast: 风力发电预测系统">WindCast: 风力发电预测系统</a><ul>
+                        
                 <li>
-                    <a href="#%e4%bc%9a%e8%ae%ae%e5%87%86%e5%a4%87ai%e5%8a%a9%e6%89%8b" aria-label="会议准备AI助手">会议准备AI助手</a>
+                    <a href="#%e4%b8%bb%e8%a6%81%e5%8a%9f%e8%83%bd" aria-label="主要功能">主要功能</a></li>
+                <li>
+                    <a href="#%e5%85%b3%e9%94%ae%e7%89%b9%e5%be%81" aria-label="关键特征">关键特征</a></li>
+                <li>
+                    <a href="#%e6%8a%80%e6%9c%af%e6%a0%88" aria-label="技术栈">技术栈</a>
                 </li>
+            </ul>
+            </li>
             </ul>
             </li>
             </ul>
@@ -354,44 +406,59 @@
     </details>
 </div>
 
-  <div class="post-content"><h2 id="大模型应用">大模型应用<a hidden class="anchor" aria-hidden="true" href="#大模型应用">#</a></h2>
-<h3 id="供电服务智能问答系统">供电服务智能问答系统<a hidden class="anchor" aria-hidden="true" href="#供电服务智能问答系统">#</a></h3>
-<p>该系统是一个基于大语言模型的智能客服解决方案，专为电力行业设计。通过处理客户音频通话记录，系统提供智能分析和专业解答。主要功能包括：</p>
-<ul>
-<li><strong>语音识别</strong>：支持多种音频格式转文字</li>
-<li><strong>智能分析</strong>：自动提取通话关键信息（受理时间、联系人、地址、内容、跟进事项）</li>
-<li><strong>专业问答</strong>：基于供电营业规则知识库提供解答</li>
-<li><strong>结构化输出</strong>：清晰展示分析结果和解决方案</li>
-</ul>
-<p>技术上，系统集成了Streamlit、LangChain、FAISS向量数据库和Whisper语音识别，通过OpenAI API提供强大的语言理解能力。</p>
-<p><a href="https://master-qtqkunyeoqrl22xzuyxayp.streamlit.app/">在线演示</a> | <a href="https://github.com/ROOKIE-AI/Intelligent-Analysis-System-for-Power-Supply-Customer-Service-Conversations">项目代码</a></p>
-<h3 id="会议准备ai助手">会议准备AI助手<a hidden class="anchor" aria-hidden="true" href="#会议准备ai助手">#</a></h3>
-<p>该系统是一个智能会议准备工具，通过多个AI助手协同工作，为用户生成全面的会议准备材料。主要特点包括：</p>
+  <div class="post-content"><h2 id="时间序列预测项目">时间序列预测项目<a hidden class="anchor" aria-hidden="true" href="#时间序列预测项目">#</a></h2>
+<h3 id="windcast-风力发电预测系统">WindCast: 风力发电预测系统<a hidden class="anchor" aria-hidden="true" href="#windcast-风力发电预测系统">#</a></h3>
+<p>该项目基于龙源电力集团提供的SDWPF（Sustainable Development Wind Power Forecasting）数据集，构建了一个风力发电预测系统。系统利用机器学习方法，通过分析风速、温度等多个特征，对风力涡轮机的发电量进行精确预测。</p>
+<h4 id="主要功能">主要功能<a hidden class="anchor" aria-hidden="true" href="#主要功能">#</a></h4>
 <ul>
 <li>
-<p><strong>多AI助手协同系统</strong>：</p>
+<p><strong>数据预处理与清洗</strong></p>
 <ul>
-<li>背景分析专家：深入研究公司信息</li>
-<li>行业专家：分析市场趋势</li>
-<li>策略专家：制定会议策略</li>
-<li>沟通专家：整合信息输出</li>
+<li>异常值检测与处理</li>
+<li>缺失值填补</li>
+<li>数据标准化</li>
 </ul>
 </li>
 <li>
-<p><strong>多文档处理能力</strong>：支持Word、PDF、PPT、Excel等多种文档格式</p>
+<p><strong>特征工程</strong></p>
+<ul>
+<li>角度特征转换（正弦/余弦编码）</li>
+<li>时间特征编码</li>
+<li>温度数据修正</li>
+<li>冗余特征删除</li>
+</ul>
 </li>
 <li>
-<p><strong>智能分析输出</strong>：</p>
+<p><strong>预测模型</strong></p>
 <ul>
-<li>会议背景分析</li>
-<li>行业趋势洞察</li>
-<li>定制化会议策略</li>
-<li>详细执行简报</li>
+<li>线性回归模型（单变量/多变量）</li>
+<li>神经网络模型(MLP、Conv-LSTM)</li>
+<li>特征重要性分析</li>
 </ul>
 </li>
 </ul>
-<p>技术上，系统基于Streamlit开发，集成了OpenAI的GPT模型和维基百科搜索功能，提供实时分析进度展示和详细日志记录。</p>
-<p><a href="https://9yskzputwjappacugobfxwo.streamlit.app/">在线演示</a> | <a href="https://github.com/ROOKIE-AI/ai_meeting_agent">项目代码</a></p>
+<h4 id="关键特征">关键特征<a hidden class="anchor" aria-hidden="true" href="#关键特征">#</a></h4>
+<p>系统分析的主要特征包括：</p>
+<ul>
+<li>风速(Wspd)</li>
+<li>风向(Wdir)</li>
+<li>环境温度(Etmp)</li>
+<li>内部温度(Itmp)</li>
+<li>机舱方向(Ndir)</li>
+<li>叶片角度(Pab)</li>
+<li>相对功率(Prtv)</li>
+<li>有功功率(Patv)：预测目标</li>
+</ul>
+<h4 id="技术栈">技术栈<a hidden class="anchor" aria-hidden="true" href="#技术栈">#</a></h4>
+<ul>
+<li>pandas、numpy：数据处理</li>
+<li>matplotlib、seaborn：数据可视化</li>
+<li>scikit-learn：机器学习模型</li>
+<li>PyTorch：深度学习模型</li>
+<li>SHAP：模型解释性分析</li>
+</ul>
+<p>项目采用平均绝对误差(MAE)作为评估指标，提供预测值与实际值的可视化对比及特征重要性分析，使结果更加直观可解释。</p>
+<p><a href="https://github.com/ROOKIE-AI/WindCast">项目代码</a></p>
 
 
   </div>
