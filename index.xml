@@ -90,7 +90,8 @@ $$&lt;/p&gt;
       <guid>https://Rookie-AI.github.io/notebook/</guid>
       <description>&lt;h2 id=&#34;-机器学习ml&#34;&gt;🌟 &lt;a href=&#34;https://Rookie-AI.github.io/ML/&#34;&gt;机器学习&lt;/a&gt;&lt;/h2&gt;
 &lt;h2 id=&#34;-深度学习dl&#34;&gt;🌟 &lt;a href=&#34;https://Rookie-AI.github.io/dl/&#34;&gt;深度学习&lt;/a&gt;&lt;/h2&gt;
-&lt;h2 id=&#34;-时间序列分析time-series&#34;&gt;🌟 &lt;a href=&#34;https://Rookie-AI.github.io/time-series/&#34;&gt;时间序列分析&lt;/a&gt;&lt;/h2&gt;</description>
+&lt;h2 id=&#34;-时间序列分析time-series&#34;&gt;🌟 &lt;a href=&#34;https://Rookie-AI.github.io/time-series/&#34;&gt;时间序列分析&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&#34;-cs编程cs&#34;&gt;🌟 &lt;a href=&#34;https://Rookie-AI.github.io/cs/&#34;&gt;CS编程&lt;/a&gt;&lt;/h2&gt;</description>
     </item>
     <item>
       <title></title>
@@ -135,6 +136,162 @@ f(z) =&lt;br&gt;
 0 &amp;amp; \text{if } z &amp;lt; 0&lt;br&gt;
 \end{cases}&lt;br&gt;
 $$&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Python学习笔记</title>
+      <link>https://Rookie-AI.github.io/cs/python/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://Rookie-AI.github.io/cs/python/</guid>
+      <description>&lt;h1 id=&#34;python学习笔记&#34;&gt;Python学习笔记&lt;/h1&gt;
+&lt;h2 id=&#34;介绍&#34;&gt;介绍&lt;/h2&gt;
+&lt;p&gt;这里收录了我在学习Python过程中整理的笔记、代码示例和重要概念。主要基于《流畅的Python》和《Python 3 面向对象编程》等优秀教材，涵盖从基础语法到高级特性的多个方面。&lt;/p&gt;
+&lt;h2 id=&#34;学习资源&#34;&gt;学习资源&lt;/h2&gt;
+&lt;h3 id=&#34;参考书籍&#34;&gt;参考书籍&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;《流畅的Python》(Fluent Python) - Luciano Ramalho&lt;/li&gt;
+&lt;li&gt;《Python 3 面向对象编程》(Python 3 Object-Oriented Programming)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;主要内容&#34;&gt;主要内容&lt;/h2&gt;
+&lt;h3 id=&#34;流畅的python笔记&#34;&gt;《流畅的Python》笔记&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Python数据模型&lt;/strong&gt; - 特殊方法、魔术方法、对象表示&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;序列构成的数组&lt;/strong&gt; - 列表推导式、生成器表达式、元组解包&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;字典与集合&lt;/strong&gt; - 映射类型、散列表、可散列类型&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;文本和字节序列&lt;/strong&gt; - 字符编码、Unicode、二进制序列&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;一等函数&lt;/strong&gt; - 函数对象、高阶函数、匿名函数&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;函数装饰器和闭包&lt;/strong&gt; - 闭包原理、装饰器模式&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;对象引用、可变性和垃圾回收&lt;/strong&gt; - 变量引用、不可变性、弱引用&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;符合Python风格的对象&lt;/strong&gt; - 对象表示形式、格式化、特性属性&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;序列的修改、散切和切片&lt;/strong&gt; - 协议、可切片序列、动态属性&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;接口-从协议到抽象基类&lt;/strong&gt; - 鸭子类型、抽象基类、虚拟子类&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;python-3-面向对象编程笔记&#34;&gt;《Python 3 面向对象编程》笔记&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;异常捕获&lt;/strong&gt; - 异常处理、自定义异常&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;何时使用面向对象编程&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Python数据结构&lt;/strong&gt; - 元组、命名元组、字典、列表、集合&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;特点&#34;&gt;特点&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;包含丰富的代码示例和输出结果&lt;/li&gt;
+&lt;li&gt;每章总结有关键概念图解&lt;/li&gt;
+&lt;li&gt;Jupyter Notebook格式，便于互动学习和执行代码&lt;/li&gt;
+&lt;li&gt;重点突出Python的特性和最佳实践&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;代码仓库&#34;&gt;代码仓库&lt;/h2&gt;
+&lt;p&gt;所有笔记和代码示例都可以在我的GitHub仓库中找到：
+&lt;a href=&#34;https://github.com/Rookie-CS/Python&#34;&gt;Python学习笔记仓库&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>SQL学习笔记</title>
+      <link>https://Rookie-AI.github.io/cs/sql/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://Rookie-AI.github.io/cs/sql/</guid>
+      <description>&lt;h1 id=&#34;sql学习笔记&#34;&gt;SQL学习笔记&lt;/h1&gt;
+&lt;h2 id=&#34;介绍&#34;&gt;介绍&lt;/h2&gt;
+&lt;p&gt;本笔记集合记录了SQL学习过程中的重要知识点和实践经验，主要基于MySQL数据库。使用Jupyter Notebook格式记录，内容涵盖了从基础语法到高级查询的完整SQL知识体系。&lt;/p&gt;
+&lt;h2 id=&#34;环境配置&#34;&gt;环境配置&lt;/h2&gt;
+&lt;p&gt;笔记使用的环境：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Python 3.11.9&lt;/li&gt;
+&lt;li&gt;Jupyter Notebook&lt;/li&gt;
+&lt;li&gt;MySQL 数据库&lt;/li&gt;
+&lt;li&gt;mysql-connector-python&lt;/li&gt;
+&lt;li&gt;ipython-sql 扩展&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;主要内容&#34;&gt;主要内容&lt;/h2&gt;
+&lt;h3 id=&#34;1-mysql连接&#34;&gt;1. MySQL连接&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Jupyter魔法方法连接MySQL&lt;/li&gt;
+&lt;li&gt;使用Python库连接MySQL&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;2-sql通用语法及分类&#34;&gt;2. SQL通用语法及分类&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;DDL&lt;/strong&gt; (数据定义语言)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;DML&lt;/strong&gt; (数据操作语言)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;DQL&lt;/strong&gt; (数据查询语言)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;DCL&lt;/strong&gt; (数据控制语言)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;3-ddl---数据定义语言&#34;&gt;3. DDL - 数据定义语言&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;数据库操作：创建、查询、修改、删除&lt;/li&gt;
+&lt;li&gt;表操作：创建表、删除表、修改表结构&lt;/li&gt;
+&lt;li&gt;字段操作：添加、修改、删除字段&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;4-dml---数据操作语言&#34;&gt;4. DML - 数据操作语言&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;添加数据&lt;/li&gt;
+&lt;li&gt;修改数据&lt;/li&gt;
+&lt;li&gt;删除数据&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;5-dql---数据查询语言&#34;&gt;5. DQL - 数据查询语言&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;基本查询&lt;/li&gt;
+&lt;li&gt;条件查询 (WHERE)&lt;/li&gt;
+&lt;li&gt;聚合函数 (count、max、min、avg、sum)&lt;/li&gt;
+&lt;li&gt;分组查询 (GROUP BY)&lt;/li&gt;
+&lt;li&gt;排序查询 (ORDER BY)&lt;/li&gt;
+&lt;li&gt;分页查询 (LIMIT)&lt;/li&gt;
+&lt;li&gt;执行顺序&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;6-dcl---数据控制语言&#34;&gt;6. DCL - 数据控制语言&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;用户管理：创建、修改、删除用户&lt;/li&gt;
+&lt;li&gt;权限控制：授予权限、撤销权限&lt;/li&gt;
+&lt;li&gt;查询权限&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;7-函数&#34;&gt;7. 函数&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;字符串函数&lt;/li&gt;
+&lt;li&gt;数字函数&lt;/li&gt;
+&lt;li&gt;日期函数&lt;/li&gt;
+&lt;li&gt;流程控制函数&lt;/li&gt;
+&lt;li&gt;窗口函数&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;8-约束&#34;&gt;8. 约束&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;主键约束&lt;/li&gt;
+&lt;li&gt;非空约束&lt;/li&gt;
+&lt;li&gt;唯一约束&lt;/li&gt;
+&lt;li&gt;默认约束&lt;/li&gt;
+&lt;li&gt;检查约束&lt;/li&gt;
+&lt;li&gt;外键约束&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;9-多表查询&#34;&gt;9. 多表查询&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;多表关系：一对多、多对多、一对一&lt;/li&gt;
+&lt;li&gt;连接查询：
+&lt;ul&gt;
+&lt;li&gt;内连接&lt;/li&gt;
+&lt;li&gt;外连接（左连接、右连接）&lt;/li&gt;
+&lt;li&gt;自连接&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;子查询：
+&lt;ul&gt;
+&lt;li&gt;标量子查询&lt;/li&gt;
+&lt;li&gt;列子查询&lt;/li&gt;
+&lt;li&gt;行子查询&lt;/li&gt;
+&lt;li&gt;表子查询&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;10-事务&#34;&gt;10. 事务&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;事务的基本概念&lt;/li&gt;
+&lt;li&gt;事务的ACID特性&lt;/li&gt;
+&lt;li&gt;事务控制&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;特点&#34;&gt;特点&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;系统化的知识结构&lt;/li&gt;
+&lt;li&gt;详细的代码示例&lt;/li&gt;
+&lt;li&gt;Jupyter格式，可交互执行&lt;/li&gt;
+&lt;li&gt;包含实际案例和解释&lt;/li&gt;
+&lt;li&gt;适合入门到进阶的SQL学习&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;示例数据&#34;&gt;示例数据&lt;/h2&gt;
+&lt;p&gt;笔记中使用了MySQL自带的&lt;code&gt;world&lt;/code&gt;数据库进行演示，这个数据库包含了国家、城市和语言等相关数据。&lt;/p&gt;</description>
     </item>
     <item>
       <title>大模型应用</title>
