@@ -163,5 +163,122 @@
 &lt;h2 id=&#34;示例数据&#34;&gt;示例数据&lt;/h2&gt;
 &lt;p&gt;笔记中使用了MySQL自带的&lt;code&gt;world&lt;/code&gt;数据库进行演示，这个数据库包含了国家、城市和语言等相关数据。&lt;/p&gt;</description>
     </item>
+    <item>
+      <title>数据结构与算法学习笔记</title>
+      <link>https://Rookie-AI.github.io/cs/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://Rookie-AI.github.io/cs/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/</guid>
+      <description>&lt;h1 id=&#34;数据结构与算法学习笔记&#34;&gt;数据结构与算法学习笔记&lt;/h1&gt;
+&lt;h2 id=&#34;简介&#34;&gt;简介&lt;/h2&gt;
+&lt;p&gt;这是一个关于数据结构与算法的学习笔记仓库，包含了常见数据结构的实现、基础算法以及LeetCode题目解答。所有代码主要使用C++实现，部分使用Python。通过Jupyter Notebook的形式展示，方便学习和调试。&lt;/p&gt;
+&lt;h2 id=&#34;仓库结构&#34;&gt;仓库结构&lt;/h2&gt;
+&lt;h3 id=&#34;数据结构-ds&#34;&gt;数据结构 (DS)&lt;/h3&gt;
+&lt;h4 id=&#34;线性结构&#34;&gt;线性结构&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;linear&lt;/strong&gt;: 线性表的实现
+&lt;ul&gt;
+&lt;li&gt;顺序存储实现&lt;/li&gt;
+&lt;li&gt;链式存储实现&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;栈与队列&#34;&gt;栈与队列&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;stack&lt;/strong&gt;: 栈的实现
+&lt;ul&gt;
+&lt;li&gt;顺序存储的栈&lt;/li&gt;
+&lt;li&gt;链式存储的栈&lt;/li&gt;
+&lt;li&gt;中缀/后缀表达式求值&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;queue&lt;/strong&gt;: 队列的实现
+&lt;ul&gt;
+&lt;li&gt;顺序存储的循环队列(C++实现)&lt;/li&gt;
+&lt;li&gt;顺序存储的循环队列(Python实现)&lt;/li&gt;
+&lt;li&gt;链式存储的队列&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;树结构&#34;&gt;树结构&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;tree&lt;/strong&gt;: 树结构的实现
+&lt;ul&gt;
+&lt;li&gt;二叉树的基本操作与遍历&lt;/li&gt;
+&lt;li&gt;搜索二叉树&lt;/li&gt;
+&lt;li&gt;平衡二叉树(AVL树)&lt;/li&gt;
+&lt;li&gt;堆的实现&lt;/li&gt;
+&lt;li&gt;哈夫曼树&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;算法实现&#34;&gt;算法实现&lt;/h3&gt;
+&lt;h4 id=&#34;基础算法&#34;&gt;基础算法&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;sort&lt;/strong&gt;: 排序算法
+&lt;ul&gt;
+&lt;li&gt;冒泡排序&lt;/li&gt;
+&lt;li&gt;选择排序&lt;/li&gt;
+&lt;li&gt;插入排序&lt;/li&gt;
+&lt;li&gt;希尔排序&lt;/li&gt;
+&lt;li&gt;归并排序&lt;/li&gt;
+&lt;li&gt;快速排序&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;find&lt;/strong&gt;: 查找算法
+&lt;ul&gt;
+&lt;li&gt;顺序表查找&lt;/li&gt;
+&lt;li&gt;有序表查找
+&lt;ul&gt;
+&lt;li&gt;二分查找&lt;/li&gt;
+&lt;li&gt;插值查找&lt;/li&gt;
+&lt;li&gt;斐波那契查找&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;散列表查找&lt;/li&gt;
+&lt;li&gt;线性索引查找&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;leetcode题目解答&#34;&gt;LeetCode题目解答&lt;/h3&gt;
+&lt;h4 id=&#34;hot-100&#34;&gt;HOT-100&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;二分查找&lt;/li&gt;
+&lt;li&gt;动态规划&lt;/li&gt;
+&lt;li&gt;堆&lt;/li&gt;
+&lt;li&gt;哈希表&lt;/li&gt;
+&lt;li&gt;普通数组&lt;/li&gt;
+&lt;li&gt;贪心算法&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;经典面试150题&#34;&gt;经典面试150题&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;双指针&lt;/li&gt;
+&lt;li&gt;哈希表&lt;/li&gt;
+&lt;li&gt;其他常见题型&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;学习建议&#34;&gt;学习建议&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;从基础数据结构开始学习 (线性表、栈、队列)&lt;/li&gt;
+&lt;li&gt;进阶学习树结构和高级数据结构&lt;/li&gt;
+&lt;li&gt;掌握基本排序和查找算法&lt;/li&gt;
+&lt;li&gt;通过LeetCode题目实践巩固算法思想&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;特点&#34;&gt;特点&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Jupyter Notebook格式展示，便于交互学习&lt;/li&gt;
+&lt;li&gt;包含详细注释和实现过程&lt;/li&gt;
+&lt;li&gt;算法复杂度分析&lt;/li&gt;
+&lt;li&gt;多种语言实现（主要是C++和Python）&lt;/li&gt;
+&lt;li&gt;包含经典题目和解题思路&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;开发环境&#34;&gt;开发环境&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Jupyter Notebook&lt;/li&gt;
+&lt;li&gt;C++内核 (xeus-cling)&lt;/li&gt;
+&lt;li&gt;Python 3.x&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;代码仓库&#34;&gt;代码仓库&lt;/h2&gt;
+&lt;p&gt;所有笔记和代码示例都可以在我的GitHub仓库中找到：
+&lt;a href=&#34;https://github.com/Rookie-CS/DS-Algo&#34;&gt;数据结构与算法学习仓库&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
   </channel>
 </rss>
