@@ -91,7 +91,7 @@ $$&lt;/p&gt;
       <description>&lt;h2 id=&#34;-机器学习ml&#34;&gt;🌟 &lt;a href=&#34;https://Rookie-AI.github.io/ML/&#34;&gt;机器学习&lt;/a&gt;&lt;/h2&gt;
 &lt;h2 id=&#34;-深度学习dl&#34;&gt;🌟 &lt;a href=&#34;https://Rookie-AI.github.io/dl/&#34;&gt;深度学习&lt;/a&gt;&lt;/h2&gt;
 &lt;h2 id=&#34;-时间序列分析time-series&#34;&gt;🌟 &lt;a href=&#34;https://Rookie-AI.github.io/time-series/&#34;&gt;时间序列分析&lt;/a&gt;&lt;/h2&gt;
-&lt;h2 id=&#34;-cs编程cs&#34;&gt;🌟 &lt;a href=&#34;https://Rookie-AI.github.io/cs/&#34;&gt;CS编程&lt;/a&gt;&lt;/h2&gt;</description>
+&lt;h2 id=&#34;-cs编程cs编程&#34;&gt;🌟 &lt;a href=&#34;https://Rookie-AI.github.io/cs%E7%BC%96%E7%A8%8B/&#34;&gt;CS编程&lt;/a&gt;&lt;/h2&gt;</description>
     </item>
     <item>
       <title></title>
@@ -139,9 +139,9 @@ $$&lt;/p&gt;</description>
     </item>
     <item>
       <title>Python学习笔记</title>
-      <link>https://Rookie-AI.github.io/cs/python/</link>
+      <link>https://Rookie-AI.github.io/cs%E7%BC%96%E7%A8%8B/python/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://Rookie-AI.github.io/cs/python/</guid>
+      <guid>https://Rookie-AI.github.io/cs%E7%BC%96%E7%A8%8B/python/</guid>
       <description>&lt;h1 id=&#34;python学习笔记&#34;&gt;Python学习笔记&lt;/h1&gt;
 &lt;h2 id=&#34;介绍&#34;&gt;介绍&lt;/h2&gt;
 &lt;p&gt;这里收录了我在学习Python过程中整理的笔记、代码示例和重要概念。主要基于《流畅的Python》和《Python 3 面向对象编程》等优秀教材，涵盖从基础语法到高级特性的多个方面。&lt;/p&gt;
@@ -184,9 +184,9 @@ $$&lt;/p&gt;</description>
     </item>
     <item>
       <title>SQL学习笔记</title>
-      <link>https://Rookie-AI.github.io/cs/sql/</link>
+      <link>https://Rookie-AI.github.io/cs%E7%BC%96%E7%A8%8B/sql/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://Rookie-AI.github.io/cs/sql/</guid>
+      <guid>https://Rookie-AI.github.io/cs%E7%BC%96%E7%A8%8B/sql/</guid>
       <description>&lt;h1 id=&#34;sql学习笔记&#34;&gt;SQL学习笔记&lt;/h1&gt;
 &lt;h2 id=&#34;介绍&#34;&gt;介绍&lt;/h2&gt;
 &lt;p&gt;本笔记集合记录了SQL学习过程中的重要知识点和实践经验，主要基于MySQL数据库。使用Jupyter Notebook格式记录，内容涵盖了从基础语法到高级查询的完整SQL知识体系。&lt;/p&gt;
@@ -339,9 +339,9 @@ $$&lt;/p&gt;</description>
     </item>
     <item>
       <title>数据结构与算法学习笔记</title>
-      <link>https://Rookie-AI.github.io/cs/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/</link>
+      <link>https://Rookie-AI.github.io/cs%E7%BC%96%E7%A8%8B/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://Rookie-AI.github.io/cs/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/</guid>
+      <guid>https://Rookie-AI.github.io/cs%E7%BC%96%E7%A8%8B/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/</guid>
       <description>&lt;h1 id=&#34;数据结构与算法学习笔记&#34;&gt;数据结构与算法学习笔记&lt;/h1&gt;
 &lt;h2 id=&#34;简介&#34;&gt;简介&lt;/h2&gt;
 &lt;p&gt;这是一个关于数据结构与算法的学习笔记仓库，包含了常见数据结构的实现、基础算法以及LeetCode题目解答。所有代码主要使用C++实现，部分使用Python。通过Jupyter Notebook的形式展示，方便学习和调试。&lt;/p&gt;

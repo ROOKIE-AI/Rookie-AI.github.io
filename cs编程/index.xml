@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>CS编程s on Rookie AI</title>
+    <link>https://Rookie-AI.github.io/cs%E7%BC%96%E7%A8%8B/</link>
+    <description>Recent content in CS编程s on Rookie AI</description>
+    <generator>Hugo -- 0.136.5</generator>
+    <language>en</language>
+    <atom:link href="https://Rookie-AI.github.io/cs%E7%BC%96%E7%A8%8B/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Python学习笔记</title>
+      <link>https://Rookie-AI.github.io/cs%E7%BC%96%E7%A8%8B/python/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://Rookie-AI.github.io/cs%E7%BC%96%E7%A8%8B/python/</guid>
+      <description>&lt;h1 id=&#34;python学习笔记&#34;&gt;Python学习笔记&lt;/h1&gt;
+&lt;h2 id=&#34;介绍&#34;&gt;介绍&lt;/h2&gt;
+&lt;p&gt;这里收录了我在学习Python过程中整理的笔记、代码示例和重要概念。主要基于《流畅的Python》和《Python 3 面向对象编程》等优秀教材，涵盖从基础语法到高级特性的多个方面。&lt;/p&gt;
+&lt;h2 id=&#34;学习资源&#34;&gt;学习资源&lt;/h2&gt;
+&lt;h3 id=&#34;参考书籍&#34;&gt;参考书籍&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;《流畅的Python》(Fluent Python) - Luciano Ramalho&lt;/li&gt;
+&lt;li&gt;《Python 3 面向对象编程》(Python 3 Object-Oriented Programming)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;主要内容&#34;&gt;主要内容&lt;/h2&gt;
+&lt;h3 id=&#34;流畅的python笔记&#34;&gt;《流畅的Python》笔记&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Python数据模型&lt;/strong&gt; - 特殊方法、魔术方法、对象表示&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;序列构成的数组&lt;/strong&gt; - 列表推导式、生成器表达式、元组解包&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;字典与集合&lt;/strong&gt; - 映射类型、散列表、可散列类型&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;文本和字节序列&lt;/strong&gt; - 字符编码、Unicode、二进制序列&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;一等函数&lt;/strong&gt; - 函数对象、高阶函数、匿名函数&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;函数装饰器和闭包&lt;/strong&gt; - 闭包原理、装饰器模式&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;对象引用、可变性和垃圾回收&lt;/strong&gt; - 变量引用、不可变性、弱引用&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;符合Python风格的对象&lt;/strong&gt; - 对象表示形式、格式化、特性属性&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;序列的修改、散切和切片&lt;/strong&gt; - 协议、可切片序列、动态属性&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;接口-从协议到抽象基类&lt;/strong&gt; - 鸭子类型、抽象基类、虚拟子类&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;python-3-面向对象编程笔记&#34;&gt;《Python 3 面向对象编程》笔记&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;异常捕获&lt;/strong&gt; - 异常处理、自定义异常&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;何时使用面向对象编程&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Python数据结构&lt;/strong&gt; - 元组、命名元组、字典、列表、集合&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;特点&#34;&gt;特点&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;包含丰富的代码示例和输出结果&lt;/li&gt;
+&lt;li&gt;每章总结有关键概念图解&lt;/li&gt;
+&lt;li&gt;Jupyter Notebook格式，便于互动学习和执行代码&lt;/li&gt;
+&lt;li&gt;重点突出Python的特性和最佳实践&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;代码仓库&#34;&gt;代码仓库&lt;/h2&gt;
+&lt;p&gt;所有笔记和代码示例都可以在我的GitHub仓库中找到：
+&lt;a href=&#34;https://github.com/Rookie-CS/Python&#34;&gt;Python学习笔记仓库&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>SQL学习笔记</title>
+      <link>https://Rookie-AI.github.io/cs%E7%BC%96%E7%A8%8B/sql/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://Rookie-AI.github.io/cs%E7%BC%96%E7%A8%8B/sql/</guid>
+      <description>&lt;h1 id=&#34;sql学习笔记&#34;&gt;SQL学习笔记&lt;/h1&gt;
+&lt;h2 id=&#34;介绍&#34;&gt;介绍&lt;/h2&gt;
+&lt;p&gt;本笔记集合记录了SQL学习过程中的重要知识点和实践经验，主要基于MySQL数据库。使用Jupyter Notebook格式记录，内容涵盖了从基础语法到高级查询的完整SQL知识体系。&lt;/p&gt;
+&lt;h2 id=&#34;环境配置&#34;&gt;环境配置&lt;/h2&gt;
+&lt;p&gt;笔记使用的环境：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Python 3.11.9&lt;/li&gt;
+&lt;li&gt;Jupyter Notebook&lt;/li&gt;
+&lt;li&gt;MySQL 数据库&lt;/li&gt;
+&lt;li&gt;mysql-connector-python&lt;/li&gt;
+&lt;li&gt;ipython-sql 扩展&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;主要内容&#34;&gt;主要内容&lt;/h2&gt;
+&lt;h3 id=&#34;1-mysql连接&#34;&gt;1. MySQL连接&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Jupyter魔法方法连接MySQL&lt;/li&gt;
+&lt;li&gt;使用Python库连接MySQL&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;2-sql通用语法及分类&#34;&gt;2. SQL通用语法及分类&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;DDL&lt;/strong&gt; (数据定义语言)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;DML&lt;/strong&gt; (数据操作语言)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;DQL&lt;/strong&gt; (数据查询语言)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;DCL&lt;/strong&gt; (数据控制语言)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;3-ddl---数据定义语言&#34;&gt;3. DDL - 数据定义语言&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;数据库操作：创建、查询、修改、删除&lt;/li&gt;
+&lt;li&gt;表操作：创建表、删除表、修改表结构&lt;/li&gt;
+&lt;li&gt;字段操作：添加、修改、删除字段&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;4-dml---数据操作语言&#34;&gt;4. DML - 数据操作语言&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;添加数据&lt;/li&gt;
+&lt;li&gt;修改数据&lt;/li&gt;
+&lt;li&gt;删除数据&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;5-dql---数据查询语言&#34;&gt;5. DQL - 数据查询语言&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;基本查询&lt;/li&gt;
+&lt;li&gt;条件查询 (WHERE)&lt;/li&gt;
+&lt;li&gt;聚合函数 (count、max、min、avg、sum)&lt;/li&gt;
+&lt;li&gt;分组查询 (GROUP BY)&lt;/li&gt;
+&lt;li&gt;排序查询 (ORDER BY)&lt;/li&gt;
+&lt;li&gt;分页查询 (LIMIT)&lt;/li&gt;
+&lt;li&gt;执行顺序&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;6-dcl---数据控制语言&#34;&gt;6. DCL - 数据控制语言&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;用户管理：创建、修改、删除用户&lt;/li&gt;
+&lt;li&gt;权限控制：授予权限、撤销权限&lt;/li&gt;
+&lt;li&gt;查询权限&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;7-函数&#34;&gt;7. 函数&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;字符串函数&lt;/li&gt;
+&lt;li&gt;数字函数&lt;/li&gt;
+&lt;li&gt;日期函数&lt;/li&gt;
+&lt;li&gt;流程控制函数&lt;/li&gt;
+&lt;li&gt;窗口函数&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;8-约束&#34;&gt;8. 约束&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;主键约束&lt;/li&gt;
+&lt;li&gt;非空约束&lt;/li&gt;
+&lt;li&gt;唯一约束&lt;/li&gt;
+&lt;li&gt;默认约束&lt;/li&gt;
+&lt;li&gt;检查约束&lt;/li&gt;
+&lt;li&gt;外键约束&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;9-多表查询&#34;&gt;9. 多表查询&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;多表关系：一对多、多对多、一对一&lt;/li&gt;
+&lt;li&gt;连接查询：
+&lt;ul&gt;
+&lt;li&gt;内连接&lt;/li&gt;
+&lt;li&gt;外连接（左连接、右连接）&lt;/li&gt;
+&lt;li&gt;自连接&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;子查询：
+&lt;ul&gt;
+&lt;li&gt;标量子查询&lt;/li&gt;
+&lt;li&gt;列子查询&lt;/li&gt;
+&lt;li&gt;行子查询&lt;/li&gt;
+&lt;li&gt;表子查询&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;10-事务&#34;&gt;10. 事务&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;事务的基本概念&lt;/li&gt;
+&lt;li&gt;事务的ACID特性&lt;/li&gt;
+&lt;li&gt;事务控制&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;特点&#34;&gt;特点&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;系统化的知识结构&lt;/li&gt;
+&lt;li&gt;详细的代码示例&lt;/li&gt;
+&lt;li&gt;Jupyter格式，可交互执行&lt;/li&gt;
+&lt;li&gt;包含实际案例和解释&lt;/li&gt;
+&lt;li&gt;适合入门到进阶的SQL学习&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;示例数据&#34;&gt;示例数据&lt;/h2&gt;
+&lt;p&gt;笔记中使用了MySQL自带的&lt;code&gt;world&lt;/code&gt;数据库进行演示，这个数据库包含了国家、城市和语言等相关数据。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>数据结构与算法学习笔记</title>
+      <link>https://Rookie-AI.github.io/cs%E7%BC%96%E7%A8%8B/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://Rookie-AI.github.io/cs%E7%BC%96%E7%A8%8B/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/</guid>
+      <description>&lt;h1 id=&#34;数据结构与算法学习笔记&#34;&gt;数据结构与算法学习笔记&lt;/h1&gt;
+&lt;h2 id=&#34;简介&#34;&gt;简介&lt;/h2&gt;
+&lt;p&gt;这是一个关于数据结构与算法的学习笔记仓库，包含了常见数据结构的实现、基础算法以及LeetCode题目解答。所有代码主要使用C++实现，部分使用Python。通过Jupyter Notebook的形式展示，方便学习和调试。&lt;/p&gt;
+&lt;h2 id=&#34;仓库结构&#34;&gt;仓库结构&lt;/h2&gt;
+&lt;h3 id=&#34;数据结构-ds&#34;&gt;数据结构 (DS)&lt;/h3&gt;
+&lt;h4 id=&#34;线性结构&#34;&gt;线性结构&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;linear&lt;/strong&gt;: 线性表的实现
+&lt;ul&gt;
+&lt;li&gt;顺序存储实现&lt;/li&gt;
+&lt;li&gt;链式存储实现&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;栈与队列&#34;&gt;栈与队列&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;stack&lt;/strong&gt;: 栈的实现
+&lt;ul&gt;
+&lt;li&gt;顺序存储的栈&lt;/li&gt;
+&lt;li&gt;链式存储的栈&lt;/li&gt;
+&lt;li&gt;中缀/后缀表达式求值&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;queue&lt;/strong&gt;: 队列的实现
+&lt;ul&gt;
+&lt;li&gt;顺序存储的循环队列(C++实现)&lt;/li&gt;
+&lt;li&gt;顺序存储的循环队列(Python实现)&lt;/li&gt;
+&lt;li&gt;链式存储的队列&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;树结构&#34;&gt;树结构&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;tree&lt;/strong&gt;: 树结构的实现
+&lt;ul&gt;
+&lt;li&gt;二叉树的基本操作与遍历&lt;/li&gt;
+&lt;li&gt;搜索二叉树&lt;/li&gt;
+&lt;li&gt;平衡二叉树(AVL树)&lt;/li&gt;
+&lt;li&gt;堆的实现&lt;/li&gt;
+&lt;li&gt;哈夫曼树&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;算法实现&#34;&gt;算法实现&lt;/h3&gt;
+&lt;h4 id=&#34;基础算法&#34;&gt;基础算法&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;sort&lt;/strong&gt;: 排序算法
+&lt;ul&gt;
+&lt;li&gt;冒泡排序&lt;/li&gt;
+&lt;li&gt;选择排序&lt;/li&gt;
+&lt;li&gt;插入排序&lt;/li&gt;
+&lt;li&gt;希尔排序&lt;/li&gt;
+&lt;li&gt;归并排序&lt;/li&gt;
+&lt;li&gt;快速排序&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;find&lt;/strong&gt;: 查找算法
+&lt;ul&gt;
+&lt;li&gt;顺序表查找&lt;/li&gt;
+&lt;li&gt;有序表查找
+&lt;ul&gt;
+&lt;li&gt;二分查找&lt;/li&gt;
+&lt;li&gt;插值查找&lt;/li&gt;
+&lt;li&gt;斐波那契查找&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;散列表查找&lt;/li&gt;
+&lt;li&gt;线性索引查找&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;leetcode题目解答&#34;&gt;LeetCode题目解答&lt;/h3&gt;
+&lt;h4 id=&#34;hot-100&#34;&gt;HOT-100&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;二分查找&lt;/li&gt;
+&lt;li&gt;动态规划&lt;/li&gt;
+&lt;li&gt;堆&lt;/li&gt;
+&lt;li&gt;哈希表&lt;/li&gt;
+&lt;li&gt;普通数组&lt;/li&gt;
+&lt;li&gt;贪心算法&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;经典面试150题&#34;&gt;经典面试150题&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;双指针&lt;/li&gt;
+&lt;li&gt;哈希表&lt;/li&gt;
+&lt;li&gt;其他常见题型&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;学习建议&#34;&gt;学习建议&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;从基础数据结构开始学习 (线性表、栈、队列)&lt;/li&gt;
+&lt;li&gt;进阶学习树结构和高级数据结构&lt;/li&gt;
+&lt;li&gt;掌握基本排序和查找算法&lt;/li&gt;
+&lt;li&gt;通过LeetCode题目实践巩固算法思想&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;特点&#34;&gt;特点&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Jupyter Notebook格式展示，便于交互学习&lt;/li&gt;
+&lt;li&gt;包含详细注释和实现过程&lt;/li&gt;
+&lt;li&gt;算法复杂度分析&lt;/li&gt;
+&lt;li&gt;多种语言实现（主要是C++和Python）&lt;/li&gt;
+&lt;li&gt;包含经典题目和解题思路&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;开发环境&#34;&gt;开发环境&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Jupyter Notebook&lt;/li&gt;
+&lt;li&gt;C++内核 (xeus-cling)&lt;/li&gt;
+&lt;li&gt;Python 3.x&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;代码仓库&#34;&gt;代码仓库&lt;/h2&gt;
+&lt;p&gt;所有笔记和代码示例都可以在我的GitHub仓库中找到：
+&lt;a href=&#34;https://github.com/Rookie-CS/DS-Algo&#34;&gt;数据结构与算法学习仓库&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
