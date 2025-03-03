@@ -83,6 +83,10 @@
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
+    <loc>https://Rookie-AI.github.io/works/matplotlib/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
     <loc>https://Rookie-AI.github.io/dl/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>

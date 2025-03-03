@@ -240,6 +240,61 @@ $$&lt;/p&gt;</description>
 &lt;p&gt;&lt;a href=&#34;https://github.com/ROOKIE-AI/WindCast&#34;&gt;项目代码&lt;/a&gt;&lt;/p&gt;</description>
     </item>
     <item>
+      <title>气象绘图框架</title>
+      <link>https://Rookie-AI.github.io/works/matplotlib/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://Rookie-AI.github.io/works/matplotlib/</guid>
+      <description>&lt;h1 id=&#34;xyplot---气象行业的专业绘图框架&#34;&gt;xyplot - 气象行业的专业绘图框架&lt;/h1&gt;
+&lt;p&gt;xyplot是一个专为气象行业设计的Python绘图封装库，基于Matplotlib构建。它提供了简洁的API和灵活的配置选项，帮助用户高效地创建专业级别的气象数据可视化图表。&lt;/p&gt;
+&lt;h2 id=&#34;主要特性&#34;&gt;主要特性&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;简化绘图流程&lt;/strong&gt;：大幅减少绘图代码量，提高开发效率&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;配置化设计&lt;/strong&gt;：支持通过外部配置文件进行个性化定制&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;组件化架构&lt;/strong&gt;：便于代码复用和维护&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;丰富的图表类型&lt;/strong&gt;：支持等高线填充图、流线图、散点图、折线图等气象常用图表&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;灵活的布局系统&lt;/strong&gt;：支持多种子图布局方式（subplot、subplot2grid、add_axes）&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;精细化控制&lt;/strong&gt;：提供对坐标轴、色阶、图例等元素的详细设置&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;设计理念&#34;&gt;设计理念&lt;/h2&gt;
+&lt;p&gt;xyplot采用面向对象的设计思路，结合了多种设计模式（建造者模式、适配器模式、模板方法模式等），使代码结构清晰、易于扩展。其目标是：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;简化绘图方法，降低绘图代码量&lt;/li&gt;
+&lt;li&gt;便于绘图代码的封装分类，提高其复用性和维护性&lt;/li&gt;
+&lt;li&gt;支持通过外部配置文件对可视化产品进行个性化定制&lt;/li&gt;
+&lt;li&gt;为未来的绘图GUI/Web配置化打下基础&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;使用示例&#34;&gt;使用示例&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; numpy &lt;span style=&#34;color:#66d9ef&#34;&gt;as&lt;/span&gt; np
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;from&lt;/span&gt; xyplot &lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; XyPlot
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# 准备数据&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;x &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; np&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;linspace(&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;np&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;pi, np&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;pi, &lt;span style=&#34;color:#ae81ff&#34;&gt;100&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;y &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; np&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;sin(x)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# 配置字典&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;set_fig_dict &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; dict(height&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;10&lt;/span&gt;, width&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;10&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;axes_dict &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; dict(
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    plot&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;dict(args&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;(x, y), label&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;y=sin(x)&amp;#39;&lt;/span&gt;, c&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;k&amp;#39;&lt;/span&gt;),
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    title&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;r&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;y=sin(x)&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# 创建并显示图表&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;cfg &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; dict(set_fig&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;set_fig_dict, axes&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;axes_dict)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;xyplt &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; XyPlot(&lt;span style=&#34;color:#f92672&#34;&gt;**&lt;/span&gt;cfg)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;xyplt&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;show()
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;主要组件&#34;&gt;主要组件&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;XyPlot&lt;/strong&gt;：顶层绘图对象，用于控制整体绘图流程&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;AxesBuilder&lt;/strong&gt;：用于构建和配置Matplotlib Axes对象&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ContourfDirector&lt;/strong&gt;：等高线填充图绘制对象&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ColorMapBuilder&lt;/strong&gt;：色阶颜色映射构建设置类&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;SetFigure&lt;/strong&gt;：画布设置类&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;SetAxes&lt;/strong&gt;：子区域绘图对象设置类&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;项目链接&#34;&gt;项目链接&lt;/h2&gt;
+&lt;p&gt;更多详细信息和代码示例，请访问项目GitHub仓库：&lt;a href=&#34;https://github.com/Rookiehhh/xyplot.git&#34;&gt;xyplot&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
       <title>深度学习</title>
       <link>https://Rookie-AI.github.io/dl/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
