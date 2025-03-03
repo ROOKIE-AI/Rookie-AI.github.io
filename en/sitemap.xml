@@ -53,10 +53,6 @@
                 href="https://Rookie-AI.github.io/categories/"
                 />
   </url><url>
-    <loc>https://Rookie-AI.github.io/works/kaggle/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
     <loc>https://Rookie-AI.github.io/tags/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
